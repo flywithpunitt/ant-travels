@@ -47,7 +47,7 @@ const Home = () => {
   return (
     <div className="relative min-h-screen">
       {/* Hero Section with Image Background */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[90vh] md:min-h-screen flex items-center justify-center overflow-hidden">
         {/* Image Background with Overlay */}
         <div className="absolute inset-0">
           <img 
@@ -65,34 +65,34 @@ const Home = () => {
         </div>
 
         {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mt-16 md:mt-0">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-8"
+            className="space-y-6 md:space-y-8"
           >
-            <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
               Discover Your Next
-              <span className="block text-[#ff5722]">
+              <span className="block text-[#ff5722] mt-2 md:mt-4">
                 Adventure
               </span>
             </h1>
-            <p className="text-xl text-white/90 max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto px-4">
               Explore breathtaking destinations and create unforgettable memories with our expertly curated travel experiences.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-[#ff5722] text-white font-bold rounded-full shadow-lg hover:bg-[#ff5722]/90 transition duration-300"
+                className="px-6 py-3 md:px-8 md:py-4 bg-[#ff5722] text-white font-bold rounded-full shadow-lg hover:bg-[#ff5722]/90 transition duration-300"
               >
                 Start Your Journey
               </motion.button>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-bold rounded-full border-2 border-white/20 hover:bg-white/20 transition duration-300"
+                className="px-6 py-3 md:px-8 md:py-4 bg-white/10 backdrop-blur-sm text-white font-bold rounded-full border-2 border-white/20 hover:bg-white/20 transition duration-300"
               >
                 Learn More
               </motion.button>
@@ -100,7 +100,7 @@ const Home = () => {
           </motion.div>
 
           {/* Floating Stats */}
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="mt-12 md:mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {[
               { number: "500+", label: "Destinations" },
               { number: "10k+", label: "Happy Travelers" },
@@ -111,10 +111,10 @@ const Home = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: index * 0.2 }}
-                className="bg-black/20 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-white/20 transition duration-300"
+                className="bg-black/20 backdrop-blur-sm rounded-2xl p-4 md:p-6 border border-white/10 hover:border-white/20 transition duration-300"
               >
-                <h3 className="text-3xl font-bold text-white">{stat.number}</h3>
-                <p className="text-white/80">{stat.label}</p>
+                <h3 className="text-2xl md:text-3xl font-bold text-white">{stat.number}</h3>
+                <p className="text-white/80 text-sm md:text-base">{stat.label}</p>
               </motion.div>
             ))}
           </div>
@@ -124,7 +124,7 @@ const Home = () => {
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden md:block"
         >
           <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
             <div className="w-1 h-3 bg-white/50 rounded-full mt-2"></div>
