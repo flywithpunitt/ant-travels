@@ -1,176 +1,405 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { FaCar, FaBus, FaShuttleVan, FaPercent, FaRegCalendarAlt, FaMapMarkedAlt, FaUsers } from 'react-icons/fa';
 
 const Home = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    // Set loaded state after a short delay to trigger animations
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   const testimonials = [
     {
-      name: 'Sarah Johnson',
-      role: 'Travel Enthusiast',
-      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-      quote: 'ANT Travels made our honeymoon unforgettable. Every detail was perfect!'
-    },
-    {
-      name: 'Michael Chen',
-      role: 'Adventure Seeker',
+      name: 'Rajesh Kumar',
+      role: 'Pilgrim',
       image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-      quote: 'The best travel agency I\'ve ever worked with. Their expertise is unmatched.'
+      quote: 'ANT Travels made our Char Dham journey comfortable and spiritually fulfilling. Their service was exceptional!'
     },
     {
-      name: 'Emily Rodriguez',
+      name: 'Sunita Sharma',
       role: 'Family Traveler',
       image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-      quote: 'They planned the perfect family vacation that everyone enjoyed.'
-    }
-  ];
-
-  const featuredDestinations = [
-    {
-      name: 'Bali, Indonesia',
-      image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-      price: 'From $1,299',
-      duration: '7 Days'
+      quote: 'The best travel agency for Char Dham Yatra. Their vehicles and staff were excellent throughout our pilgrimage.'
     },
     {
-      name: 'Paris, France',
-      image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-      price: 'From $1,599',
-      duration: '5 Days'
-    },
-    {
-      name: 'Tokyo, Japan',
-      image: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-      price: 'From $1,899',
-      duration: '8 Days'
+      name: 'Amit Patel',
+      role: 'Group Organizer',
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+      quote: 'Our group of 25 pilgrims had a seamless experience thanks to ANT Travels\' well-maintained buses and professional drivers.'
     }
   ];
 
   return (
     <div className="relative min-h-screen">
       {/* Hero Section with Image Background */}
-      <section className="relative min-h-[90vh] md:min-h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[100vh] flex items-center justify-center overflow-hidden">
         {/* Image Background with Overlay */}
         <div className="absolute inset-0">
           <img 
-            src="https://images.unsplash.com/photo-1455587734955-081b22074882?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-            alt="Luxury Travel Experience"
+            src="/bg-image.jpg" 
+            alt="Char Dham Yatra"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/80"></div>
+          {/* Enhanced overlay with gradient */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80"></div>
           
           {/* Animated Overlay Elements */}
           <div className="absolute inset-0">
-            <div className="absolute w-full h-full bg-[#ff5722]/5 mix-blend-overlay"></div>
+            <div className="absolute w-full h-full bg-[#ff5722]/10 mix-blend-overlay"></div>
             <motion.div 
               initial={{ opacity: 0 }}
-              animate={{ opacity: [0.1, 0.2, 0.1] }}
-              transition={{ duration: 5, repeat: Infinity }}
-              className="absolute inset-0 bg-gradient-to-r from-[#ff5722]/10 to-transparent"
+              animate={{ opacity: [0.1, 0.3, 0.1] }}
+              transition={{ duration: 6, repeat: Infinity }}
+              className="absolute inset-0 bg-gradient-to-r from-[#ff5722]/15 to-transparent"
+            />
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1.5 }}
+              className="absolute inset-0"
+              style={{
+                backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(255, 87, 34, 0.1) 0%, transparent 40%)',
+              }}
             />
           </div>
         </div>
 
         {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mt-20 md:mt-0">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
+            transition={{ duration: 1 }}
             className="space-y-8 md:space-y-10"
           >
             {/* Decorative Line */}
             <motion.div 
               initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
+              animate={{ scaleX: isLoaded ? 1 : 0 }}
               transition={{ duration: 1, delay: 0.5 }}
-              className="w-24 h-1 bg-[#ff5722] mx-auto rounded-full"
+              className="w-32 h-1 bg-[#ff5722] mx-auto rounded-full"
             />
 
-            <div className="space-y-4">
+            <div className="space-y-6">
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="text-[#ff5722] text-lg md:text-xl font-medium tracking-wide uppercase"
+                className="text-[#ff5722] text-xl md:text-2xl font-medium tracking-wide uppercase"
               >
-                Welcome to ANT Travels
+                WELCOME TO ANT TRAVELS
               </motion.p>
               
               <motion.h1 
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
                 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-tight tracking-tight"
               >
-                Discover
-                <span className="block text-[#ff5722] mt-2 md:mt-4 relative">
-                  Paradise
+                Char Dham Yatra
+                <motion.span 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
+                  transition={{ duration: 0.8, delay: 0.7 }}
+                  className="block text-[#ff5722] mt-2 md:mt-4 relative"
+                >
+                  Transportation Services
                   <motion.span
                     initial={{ width: 0 }}
-                    animate={{ width: "100%" }}
-                    transition={{ duration: 1, delay: 1 }}
-                    className="absolute bottom-0 left-0 h-1 bg-white/20 rounded-full"
+                    animate={{ width: isLoaded ? "100%" : 0 }}
+                    transition={{ duration: 1.2, delay: 1 }}
+                    className="absolute -bottom-2 left-0 h-1 bg-white/30 rounded-full"
                   />
-                </span>
+                </motion.span>
               </motion.h1>
             </div>
 
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.7 }}
-              className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto px-4 leading-relaxed font-light"
+              animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
+              transition={{ duration: 0.8, delay: 0.9 }}
+              className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto px-4 leading-relaxed"
             >
-              Experience luxury travel like never before. Let us craft your perfect getaway.
+              Reliable and comfortable transportation for your sacred journey to 
+              Badrinath, Kedarnath, Gangotri, and Yamunotri.
             </motion.p>
 
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.9 }}
-              className="flex flex-col sm:flex-row gap-6 justify-center mt-8 px-4"
+              animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
+              transition={{ duration: 0.8, delay: 1.1 }}
+              className="flex flex-col sm:flex-row gap-6 justify-center mt-10 px-4"
             >
               <motion.button
-                whileHover={{ scale: 1.05, backgroundColor: '#ff5722' }}
+                whileHover={{ scale: 1.05, backgroundColor: '#ff7043' }}
                 whileTap={{ scale: 0.95 }}
-                className="px-10 py-4 bg-[#ff5722] text-white text-lg font-medium rounded-full shadow-lg hover:shadow-xl hover:bg-[#ff5722]/90 transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden group"
+                className="px-10 py-4 bg-[#ff5722] text-white text-lg font-medium rounded-full shadow-xl hover:shadow-[#ff5722]/30 transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden group"
               >
-                <span className="relative z-10">Plan Your Trip</span>
-                <div className="absolute inset-0 bg-white/20 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                <span className="relative z-10">Book Your Vehicle</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-[#ff7043] to-[#ff5722] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute top-0 right-0 w-20 h-10 bg-white/10 blur-xl transform rotate-45 translate-x-20 translate-y-0 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-1000"></div>
               </motion.button>
 
               <motion.button
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.05, borderColor: "rgba(255,255,255,0.5)" }}
                 whileTap={{ scale: 0.95 }}
-                className="px-10 py-4 bg-transparent text-white text-lg font-medium rounded-full border-2 border-white/20 hover:border-white/40 hover:bg-white/10 transition-all duration-300 transform hover:-translate-y-1 backdrop-blur-sm"
+                className="px-10 py-4 bg-transparent text-white text-lg font-medium rounded-full border-2 border-white/30 hover:bg-white/10 transition-all duration-300 transform hover:-translate-y-1 backdrop-blur-sm"
               >
-                View Destinations
+                View Services
               </motion.button>
             </motion.div>
           </motion.div>
         </div>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1, y: [0, 10, 0] }}
-          transition={{ 
-            opacity: { duration: 0.8, delay: 1.5 },
-            y: { duration: 2, repeat: Infinity }
-          }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden md:flex flex-col items-center gap-2"
-        >
-          <span className="text-white/60 text-sm tracking-wider font-light">Scroll to explore</span>
-          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-white/50 rounded-full mt-2"></div>
-          </div>
-        </motion.div>
       </section>
 
-      {/* Travel Inspiration Section */}
-      <section className="relative py-24 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
+      {/* Special Offers Section */}
+      <section className="py-12 bg-gradient-to-r from-amber-50 to-orange-50 relative overflow-hidden">
+        {/* Decorative elements */}
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-10">
+          <div className="absolute -top-24 -left-24 w-64 h-64 bg-amber-500 rounded-full"></div>
+          <div className="absolute top-32 -right-32 w-96 h-96 bg-orange-500 rounded-full"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-10">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="inline-block mb-2"
+            >
+              <div className="flex items-center justify-center space-x-2 bg-amber-500 text-white px-4 py-1 rounded-full">
+                <FaPercent className="text-sm" />
+                <span className="font-bold text-sm uppercase tracking-wider">Limited Time Offers</span>
+              </div>
+            </motion.div>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4"
+            >
+              Special Deals for Char Dham Yatra 2024
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-lg text-gray-600 max-w-3xl mx-auto"
+            >
+              Book your sacred journey today and take advantage of our exclusive promotional offers
+            </motion.p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                title: "Early Bird Discount",
+                subtitle: "20% OFF on bookings made 2 months in advance",
+                description: "Plan ahead and save on your transportation costs for Char Dham Yatra. Valid for all vehicle types.",
+                icon: <FaRegCalendarAlt className="w-6 h-6" />,
+                color: "amber",
+                cta: "Book Now",
+                expiry: "Expires in 7 days"
+              },
+              {
+                title: "Group Pilgrimage Special",
+                subtitle: "15% OFF for groups of 15+ pilgrims",
+                description: "The more devotees join, the more you save. Perfect for temple groups and spiritual communities.",
+                icon: <FaUsers className="w-6 h-6" />,
+                color: "orange",
+                cta: "Group Booking",
+                expiry: "Limited availability"
+              },
+              {
+                title: "Complete Package Deal",
+                subtitle: "Free hotel stays in Rishikesh",
+                description: "Book complete Char Dham transportation package and get 2 nights' accommodation in Rishikesh free.",
+                icon: <FaMapMarkedAlt className="w-6 h-6" />,
+                color: "red",
+                cta: "View Details",
+                expiry: "Premium hotels only"
+              }
+            ].map((offer, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 + (index * 0.1) }}
+                className="relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 group"
+              >
+                {/* Top decorative element */}
+                <div className={`absolute top-0 left-0 w-full h-1 bg-${offer.color}-500`}></div>
+                
+                {/* Content */}
+                <div className="p-8">
+                  <div className={`w-14 h-14 rounded-full bg-${offer.color}-100 flex items-center justify-center mb-6 text-${offer.color}-600 group-hover:bg-${offer.color}-500 group-hover:text-white transition-colors duration-300`}>
+                    {offer.icon}
+                  </div>
+                  
+                  <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-amber-600 transition-colors duration-300">{offer.title}</h3>
+                  <p className="text-amber-600 font-semibold mb-4">{offer.subtitle}</p>
+                  <p className="text-gray-600 mb-8">{offer.description}</p>
+                  
+                  <div className="flex items-center justify-between">
+                    <button className={`px-5 py-2 bg-${offer.color}-500 hover:bg-${offer.color}-600 text-white rounded-lg font-medium transition-colors duration-300 flex items-center space-x-1`}>
+                      <span>{offer.cta}</span>
+                      <svg className="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
+                    <span className="text-sm text-gray-500">{offer.expiry}</span>
+                  </div>
+                </div>
+                
+                {/* Ribbon */}
+                <div className="absolute top-5 -right-12 w-40 transform rotate-45 bg-gradient-to-r from-amber-500 to-amber-600 text-white text-xs font-bold py-1 text-center shadow-lg">
+                  SPECIAL OFFER
+                </div>
+              </motion.div>
+            ))}
+          </div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="text-center mt-12"
+          >
+            <Link 
+              to="/offers"
+              className="inline-flex items-center text-amber-600 hover:text-amber-700 font-semibold group"
+            >
+              View All Special Offers
+              <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+      
+      {/* Our Services Section - Enhanced */}
+      <section className="py-20 bg-white overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-20"
+          >
+            <span className="text-[#ff5722] font-semibold text-lg tracking-wider mb-4 block">
+              OUR SERVICES
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold text-[#1e40af] mb-6">
+              Transportation Options
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Choose from our fleet of well-maintained vehicles for a comfortable and safe journey to the sacred Char Dham shrines
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            {[
+              {
+                title: "Premium SUVs",
+                description: "Comfortable SUVs for small families or individual pilgrims. Enjoy personalized service with experienced drivers who know the mountain routes.",
+                icon: <FaCar className="w-12 h-12" />,
+                color: "amber",
+                features: ["4-6 seater capacity", "Air conditioned", "24-hour service", "Experienced mountain drivers"],
+                price: "Starting from ₹15,000 per day",
+                image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
+              },
+              {
+                title: "Tempo Travellers",
+                description: "Perfect for medium-sized groups or families traveling together. Our Tempo Travellers provide ample space with comfortable seating arrangements.",
+                icon: <FaShuttleVan className="w-12 h-12" />,
+                color: "blue",
+                features: ["9-14 seater capacity", "Air conditioned", "Ample luggage space", "Onboard basic amenities"],
+                price: "Starting from ₹20,000 per day",
+                image: "https://images.unsplash.com/photo-1580274455191-1c62238fa333?ixlib=rb-4.0.3&auto=format&fit=crop&w=1364&q=80"
+              },
+              {
+                title: "Luxury Buses",
+                description: "For large groups undertaking the pilgrimage together. Our buses offer maximum comfort with spacious seating and essential facilities for long journeys.",
+                icon: <FaBus className="w-12 h-12" />,
+                color: "indigo",
+                features: ["25-40 seater capacity", "Air conditioned", "Onboard toilet facility", "Entertainment system", "Storage compartments"],
+                price: "Starting from ₹30,000 per day",
+                image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=1469&q=80"
+              }
+            ].map((service, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: index * 0.2 }}
+                className="flex flex-col rounded-2xl overflow-hidden bg-white shadow-lg hover:shadow-xl transition-all duration-500 group"
+              >
+                {/* Vehicle Image */}
+                <div className="relative h-48 overflow-hidden">
+                  <img 
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                  
+                  {/* Title overlay on image */}
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <h3 className="text-2xl font-bold text-white">{service.title}</h3>
+                  </div>
+                </div>
+                
+                <div className="p-6 flex-grow flex flex-col">
+                  {/* Icon */}
+                  <div className={`w-16 h-16 rounded-xl bg-${service.color}-50 text-${service.color}-600 flex items-center justify-center mb-6 group-hover:bg-${service.color}-600 group-hover:text-white transition-colors duration-300`}>
+                    {service.icon}
+                  </div>
+                  
+                  <p className="text-gray-600 mb-6">{service.description}</p>
+                  
+                  <div className="space-y-3 mb-6">
+                    {service.features.map((feature, i) => (
+                      <div key={i} className="flex items-center text-gray-600">
+                        <svg className="w-5 h-5 text-[#ff5722] mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span className="text-sm">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  <div className="mt-auto">
+                    <div className="font-bold text-lg text-[#1e40af] mb-6">
+                      {service.price}
+                    </div>
+                    
+                    <button className={`w-full py-3 px-4 bg-${service.color}-600 text-white rounded-xl font-medium hover:bg-[#ff5722] transition duration-300 flex items-center justify-center group`}>
+                      <span>Book Now</span>
+                      <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+      
+      {/* Char Dham Destinations Section */}
+      <section className="py-24 bg-gray-50 relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-0 left-0 w-72 h-72 bg-[#ff5722]/5 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#1e40af]/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-white to-transparent"></div>
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -181,849 +410,375 @@ const Home = () => {
             className="text-center mb-16"
           >
             <span className="text-[#ff5722] font-semibold text-lg tracking-wider mb-4 block">
-              GET INSPIRED
+              SACRED DESTINATIONS
             </span>
             <h2 className="text-4xl md:text-5xl font-bold text-[#1e40af] mb-6">
-              Travel Inspiration
+              The Four Divine Abodes
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Discover breathtaking destinations and unique experiences through our curated collection of travel moments
+              Explore the holy shrines of Char Dham, the most sacred pilgrimage circuit in the Himalayas
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Sunset in Santorini",
-                location: "Greece",
-                views: "128K",
-                thumbnail: "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1638&q=80",
-                category: "Luxury Travel"
-              },
-              {
-                title: "Adventure in Machu Picchu",
-                location: "Peru",
-                views: "95K",
-                thumbnail: "https://images.unsplash.com/photo-1587595431973-160d0d94add1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1519&q=80",
-                category: "Adventure"
-              },
-              {
-                title: "Cherry Blossoms in Tokyo",
-                location: "Japan",
-                views: "156K",
-                thumbnail: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-                category: "Cultural"
-              }
-            ].map((video, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
-                className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500"
-              >
-                <div className="relative h-[400px] overflow-hidden">
-                  <img 
-                    src={video.thumbnail}
-                    alt={video.title}
-                    className="w-full h-full object-cover transform group-hover:scale-110 transition duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
-                  
-                  {/* Play Button Overlay */}
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <motion.div 
-                      whileHover={{ scale: 1.1 }}
-                      className="w-16 h-16 bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center"
-                    >
-                      <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M6.3 2.841A1.5 1.5 0 004 4.11v11.78a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
-                      </svg>
-                    </motion.div>
-                  </div>
-
-                  {/* Content Overlay */}
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <div className="flex items-center text-white/80 text-sm mb-2">
-                      <span className="bg-[#ff5722] px-3 py-1 rounded-full text-white">{video.category}</span>
-                      <span className="ml-3 flex items-center">
-                        <svg className="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                        </svg>
-                        {video.views}
-                      </span>
-                    </div>
-                    <h3 className="text-2xl font-bold text-white mb-2">{video.title}</h3>
-                    <div className="flex items-center text-white/80">
-                      <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                      </svg>
-                      {video.location}
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mt-12"
-          >
-            <Link
-              to="/inspiration"
-              className="inline-flex items-center bg-[#1e40af] hover:bg-[#1e3a8a] text-white font-bold py-4 px-8 rounded-full transition duration-300 transform hover:scale-105"
+          {/* Alternating cards for destinations */}
+          <div className="space-y-16 md:space-y-32">
+            {/* First destination - Badrinath */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
             >
-              View More Inspirations
-              <svg className="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-            </Link>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Travel Blog Section */}
-      <section className="py-20 bg-gradient-to-b from-white to-[#f4f4f4]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#1e40af] mb-4">
-              Latest Travel Stories
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Discover inspiring travel experiences and expert tips from our blog
-            </p>
-          </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                title: 'Hidden Gems of Southeast Asia',
-                excerpt: 'Explore the lesser-known destinations that will take your breath away.',
-                image: 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-                date: 'May 15, 2024',
-                author: 'Travel Expert',
-              },
-              {
-                title: 'Luxury Travel on a Budget',
-                excerpt: 'Learn how to experience luxury travel without breaking the bank.',
-                image: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80',
-                date: 'May 10, 2024',
-                author: 'Budget Traveler',
-              },
-              {
-                title: 'Sustainable Travel Guide',
-                excerpt: 'Discover how to travel responsibly and make a positive impact.',
-                image: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80',
-                date: 'May 5, 2024',
-                author: 'Eco Traveler',
-              },
-            ].map((post, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
-                className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300 group"
-              >
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={post.image}
-                    alt={post.title}
-                    className="w-full h-full object-cover transform group-hover:scale-110 transition duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                </div>
-                <div className="p-6">
-                  <div className="flex items-center text-sm text-gray-500 mb-4">
-                    <span>{post.date}</span>
-                    <span className="mx-2">•</span>
-                    <span>{post.author}</span>
-                  </div>
-                  <h3 className="text-xl font-bold text-[#1e40af] mb-2">{post.title}</h3>
-                  <p className="text-gray-600 mb-4">{post.excerpt}</p>
-                  <Link
-                    to="#"
-                    className="text-[#ff5722] font-semibold hover:text-[#e64a19] transition duration-300 inline-flex items-center"
-                  >
-                    Read More
-                    <svg className="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              <div className="md:flex">
+                {/* Content - Left */}
+                <div className="md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
+                  <h3 className="text-2xl md:text-3xl font-bold text-[#1e40af] mb-3">Badrinath</h3>
+                  <div className="h-1 w-16 bg-amber-500 mb-6 rounded-full"></div>
+                  
+                  <div className="flex items-center text-sm text-gray-600 mb-2">
+                    <svg className="w-4 h-4 text-amber-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
-                  </Link>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Travel Experiences & Packages */}
-      <section className="py-12 md:py-24 bg-white relative overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-[#f4f4f4] to-transparent"></div>
-        </div>
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#1e40af] mb-4">
-              Travel Experiences & Packages
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Choose from our carefully curated selection of premium travel experiences
-            </p>
-          </motion.div>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-12">
-            {/* Booking Information */}
-            <div className="lg:col-span-2 space-y-6 lg:space-y-8">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="bg-white rounded-2xl md:rounded-3xl shadow-xl p-4 md:p-8"
-              >
-                <h3 className="text-xl md:text-2xl font-bold text-[#1e40af] mb-4 md:mb-6">Current Travel Deals</h3>
-                <div className="space-y-4 md:space-y-6">
-                  {[
-                    {
-                      title: "Early Bird Summer Special",
-                      validity: "Book by May 31st",
-                      description: "Get exclusive discounts on summer packages when you book early",
-                      code: "SUMMER25"
-                    },
-                    {
-                      title: "Family Package Deal",
-                      validity: "Valid for July-August",
-                      description: "Children under 12 stay free with two paying adults",
-                      code: "FAMILY2024"
-                    },
-                    {
-                      title: "Luxury Escape Package",
-                      validity: "Limited Time Offer",
-                      description: "Free room upgrades and spa credits at select resorts",
-                      code: "LUXURY24"
-                    }
-                  ].map((deal, index) => (
-                    <div key={index} className="flex flex-col md:flex-row md:items-start p-4 md:p-6 bg-gradient-to-r from-gray-50 to-white rounded-xl md:rounded-2xl border border-gray-100">
-                      <div className="flex-1">
-                        <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-0 mb-2">
-                          <h4 className="text-base md:text-lg font-semibold text-gray-900">{deal.title}</h4>
-                        </div>
-                        <p className="text-sm md:text-base text-gray-600 mb-2">{deal.description}</p>
-                        <div className="flex flex-col md:flex-row md:items-center text-sm text-gray-500 gap-2 md:gap-0">
-                          <span className="md:mr-4">{deal.validity}</span>
-                          <div className="flex items-center">
-                            <span className="font-medium text-[#1e40af]">Code: {deal.code}</span>
-                          </div>
-                        </div>
-                      </div>
-                      <button className="mt-4 md:mt-0 md:ml-4 w-full md:w-auto px-4 py-2 bg-[#1e40af] text-white rounded-full text-sm font-medium hover:bg-[#1e3a8a] transition duration-300">
-                        Book Now
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="bg-white rounded-2xl md:rounded-3xl shadow-xl p-4 md:p-8"
-              >
-                <h3 className="text-xl md:text-2xl font-bold text-[#1e40af] mb-4 md:mb-6">Upcoming Group Tours</h3>
-                <div className="space-y-4 md:space-y-6">
-                  {[
-                    {
-                      destination: "European Heritage Tour",
-                      date: "June 15-30, 2024",
-                      spots: "4 spots left",
-                      price: "$2,999",
-                      highlights: ["10 cities", "Guided tours", "Luxury hotels"]
-                    },
-                    {
-                      destination: "Asian Cultural Experience",
-                      date: "July 10-25, 2024",
-                      spots: "6 spots left",
-                      price: "$3,499",
-                      highlights: ["5 countries", "Local cuisine", "Traditional shows"]
-                    },
-                    {
-                      destination: "African Safari Adventure",
-                      date: "August 5-20, 2024",
-                      spots: "Last 2 spots",
-                      price: "$4,299",
-                      highlights: ["Wildlife tours", "Luxury camps", "Local guides"]
-                    },
-                    {
-                      destination: "South American Expedition",
-                      date: "September 1-15, 2024",
-                      spots: "8 spots left",
-                      price: "$3,799",
-                      highlights: ["Machu Picchu", "Amazon River", "Inca Trail"]
-                    }
-                  ].map((tour, index) => (
-                    <div key={index} className="flex flex-col md:flex-row md:items-center p-4 md:p-6 bg-gradient-to-r from-gray-50 to-white rounded-xl md:rounded-2xl border border-gray-100">
-                      <div className="flex-1">
-                        <h4 className="text-base md:text-lg font-semibold text-gray-900 mb-2">{tour.destination}</h4>
-                        <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-0 text-sm text-gray-500 mb-3">
-                          <span className="md:mr-4">{tour.date}</span>
-                          <span className="text-[#ff5722] font-medium">{tour.spots}</span>
-                        </div>
-                        <div className="flex flex-wrap gap-2">
-                          {tour.highlights.map((highlight, i) => (
-                            <span key={i} className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm">
-                              {highlight}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                      <div className="mt-4 md:mt-0 text-center md:text-right">
-                        <div className="text-xl md:text-2xl font-bold text-[#1e40af] mb-2">{tour.price}</div>
-                        <button className="w-full md:w-auto px-4 py-2 bg-[#ff5722] text-white rounded-full text-sm font-medium hover:bg-[#e64a19] transition duration-300">
-                          Reserve Now
-                        </button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            </div>
-
-            {/* Sidebar */}
-            <div className="mt-6 lg:mt-0">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="bg-white rounded-2xl md:rounded-3xl shadow-xl p-4 md:p-8 lg:sticky lg:top-24"
-              >
-                <h3 className="text-xl md:text-2xl font-bold text-[#1e40af] mb-4 md:mb-6">Quick Booking</h3>
-                <form className="space-y-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Destination</label>
-                    <select className="w-full px-4 py-2 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#ff5722] focus:border-transparent text-base">
-                      <option>Select Destination</option>
-                      <option>Bali, Indonesia</option>
-                      <option>Santorini, Greece</option>
-                      <option>Maldives</option>
-                      <option>Swiss Alps</option>
-                      <option>Tokyo, Japan</option>
-                    </select>
+                    <span>Chamoli District, Uttarakhand</span>
                   </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Travel Date</label>
-                      <input type="date" className="w-full px-4 py-2 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#ff5722] focus:border-transparent" />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Return Date</label>
-                      <input type="date" className="w-full px-4 py-2 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#ff5722] focus:border-transparent" />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Travelers</label>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-xs text-gray-500 mb-1">Adults</label>
-                        <input type="number" min="1" defaultValue="2" className="w-full px-4 py-2 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#ff5722] focus:border-transparent" />
-                      </div>
-                      <div>
-                        <label className="block text-xs text-gray-500 mb-1">Children</label>
-                        <input type="number" min="0" defaultValue="0" className="w-full px-4 py-2 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#ff5722] focus:border-transparent" />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Package Type</label>
-                    <select className="w-full px-4 py-2 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#ff5722] focus:border-transparent">
-                      <option>Select Package</option>
-                      <option>Luxury Escape</option>
-                      <option>Adventure Package</option>
-                      <option>Cultural Experience</option>
-                      <option>Family Holiday</option>
-                      <option>Honeymoon Special</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Accommodation</label>
-                    <select className="w-full px-4 py-2 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#ff5722] focus:border-transparent">
-                      <option>Select Accommodation</option>
-                      <option>5-Star Hotel</option>
-                      <option>Luxury Resort</option>
-                      <option>Boutique Hotel</option>
-                      <option>Private Villa</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Budget Range</label>
-                    <select className="w-full px-4 py-2 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#ff5722] focus:border-transparent">
-                      <option>Select Budget</option>
-                      <option>$1,000 - $2,000</option>
-                      <option>$2,000 - $3,000</option>
-                      <option>$3,000 - $5,000</option>
-                      <option>$5,000+</option>
-                    </select>
-                  </div>
-
-                  <button className="w-full py-3 bg-[#ff5722] text-white rounded-xl font-medium hover:bg-[#e64a19] transition duration-300">
-                    Check Availability
-                  </button>
-
-                  <div className="mt-6 p-4 bg-[#1e40af]/5 rounded-xl">
-                    <h4 className="font-medium text-[#1e40af] mb-2">Special Request?</h4>
-                    <textarea 
-                      placeholder="Any special requirements..."
-                      className="w-full px-4 py-2 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#ff5722] focus:border-transparent"
-                      rows="3"
-                    ></textarea>
-                  </div>
-                </form>
-
-                <div className="mt-8 pt-8 border-t border-gray-100">
-                  <h4 className="text-lg font-semibold text-[#1e40af] mb-4">Need Help?</h4>
-                  <div className="space-y-4">
-                    <div className="flex items-center">
-                      <svg className="w-5 h-5 text-[#ff5722] mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                      </svg>
-                      <span className="text-gray-600">+1 (555) 123-4567</span>
-                    </div>
-                    <div className="flex items-center">
-                      <svg className="w-5 h-5 text-[#ff5722] mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                      </svg>
-                      <span className="text-gray-600">support@anttravel.com</span>
-                    </div>
-                    <div className="flex items-center">
-                      <svg className="w-5 h-5 text-[#ff5722] mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      <span className="text-gray-600">24/7 Support Available</span>
-                    </div>
-                  </div>
-
-                  <div className="mt-6 p-4 bg-[#ff5722]/5 rounded-xl">
-                    <h4 className="font-medium text-[#ff5722] mb-2">Travel Insurance</h4>
-                    <p className="text-sm text-gray-600 mb-3">Protect your journey with our comprehensive travel insurance</p>
-                    <label className="flex items-center space-x-2 text-sm text-gray-600">
-                      <input type="checkbox" className="rounded text-[#ff5722] focus:ring-[#ff5722]" />
-                      <span>Add travel insurance to my booking</span>
-                    </label>
-                  </div>
-
-                  <div className="mt-6">
-                    <h4 className="font-medium text-[#1e40af] mb-3">Payment Methods</h4>
-                    <div className="flex flex-wrap gap-4">
-                      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/1280px-Mastercard-logo.svg.png" alt="Mastercard" className="h-8" />
-                      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/2560px-Visa_Inc._logo.svg.png" alt="Visa" className="h-8" />
-                      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/1280px-PayPal.svg.png" alt="PayPal" className="h-8" />
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Popular Activities Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#1e40af] mb-4">
-              Popular Activities
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Experience the most exciting activities at our destinations
-            </p>
-          </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            {[
-              {
-                title: 'Scuba Diving',
-                icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z',
-                description: 'Explore vibrant coral reefs and marine life',
-              },
-              {
-                title: 'Hiking',
-                icon: 'M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z',
-                description: 'Discover breathtaking mountain trails',
-              },
-              {
-                title: 'Cultural Tours',
-                icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4',
-                description: 'Immerse in local traditions and heritage',
-              },
-              {
-                title: 'Wildlife Safari',
-                icon: 'M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
-                description: 'Witness amazing wildlife in their natural habitat',
-              },
-            ].map((activity, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="p-6 rounded-2xl bg-gradient-to-br from-[#1e40af]/5 to-[#ff5722]/5 hover:from-[#1e40af]/10 hover:to-[#ff5722]/10 transition duration-300 group"
-              >
-                <div className="w-16 h-16 bg-[#ff5722] rounded-full flex items-center justify-center mb-6 group-hover:rotate-12 transition duration-300">
-                  <svg className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={activity.icon} />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold text-[#1e40af] mb-2">{activity.title}</h3>
-                <p className="text-gray-600">{activity.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Travel Tips Section */}
-      <section className="py-20 bg-gradient-to-b from-[#f4f4f4] to-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#1e40af] mb-4">
-              Expert Travel Tips
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Essential advice to make your journey smooth and enjoyable
-            </p>
-          </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {[
-              {
-                title: 'Packing Smart',
-                tips: [
-                  'Roll clothes to save space',
-                  'Use packing cubes for organization',
-                  'Pack versatile clothing items',
-                  'Don\'t forget essential documents',
-                ],
-                icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2',
-              },
-              {
-                title: 'Travel Safety',
-                tips: [
-                  'Keep copies of important documents',
-                  'Stay aware of your surroundings',
-                  'Use secure transportation',
-                  'Keep emergency contacts handy',
-                ],
-                icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
-              },
-            ].map((category, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
-                className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition duration-300"
-              >
-                <div className="flex items-center mb-6">
-                  <div className="w-12 h-12 bg-[#ff5722] rounded-full flex items-center justify-center mr-4">
-                    <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={category.icon} />
+                  
+                  <div className="flex items-center text-sm text-gray-600 mb-4">
+                    <svg className="w-4 h-4 text-amber-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                     </svg>
+                    <span>Elevation: 3,300 meters</span>
                   </div>
-                  <h3 className="text-2xl font-bold text-[#1e40af]">{category.title}</h3>
-                </div>
-                <ul className="space-y-3">
-                  {category.tips.map((tip, tipIndex) => (
-                    <li key={tipIndex} className="flex items-start">
-                      <svg className="h-5 w-5 text-[#ff5722] mr-2 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  
+                  <p className="text-gray-600 mb-6 leading-relaxed">
+                    Dedicated to Lord Vishnu, Badrinath is one of the holiest Hindu temples. Located in the Garhwal hills along the banks of the Alaknanda River, this sacred site is surrounded by breathtaking mountain scenery.
+                  </p>
+                  
+                  <div className="grid grid-cols-2 gap-3 mb-6">
+                    <div className="flex items-center text-gray-700">
+                      <svg className="w-4 h-4 text-amber-500 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
-                      <span className="text-gray-600">{tip}</span>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Destinations with Enhanced Cards */}
-      <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-b from-white to-[#f4f4f4] relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/noise.png')] opacity-5"></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-8 sm:mb-12 lg:mb-16"
-          >
-            <span className="inline-block text-[#ff5722] font-semibold text-base sm:text-lg tracking-wider mb-3 sm:mb-4">
-              EXPLORE THE WORLD
-            </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1e40af] mb-4 sm:mb-6">
-              Featured Destinations
-            </h2>
-            <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto px-4">
-              Discover our most popular travel packages and start planning your next adventure
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
-            {[
-              {
-                title: 'Bali Paradise',
-                price: '$1,299',
-                duration: '7 Days',
-                rating: '4.9',
-                reviews: '128',
-                image: 'https://images.unsplash.com/photo-1558005530-a7958896ec60?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80',
-                features: ['All-inclusive Resort', 'Beach Access', 'Cultural Tours']
-              },
-              {
-                title: 'Santorini Escape',
-                price: '$1,599',
-                duration: '5 Days',
-                rating: '4.8',
-                reviews: '96',
-                image: 'https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1638&q=80',
-                features: ['Sunset Views', 'Wine Tasting', 'Private Villa']
-              },
-              {
-                title: 'Maldives Luxury',
-                price: '$2,499',
-                duration: '10 Days',
-                rating: '5.0',
-                reviews: '156',
-                image: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1638&q=80',
-                features: ['Overwater Villa', 'Spa Package', 'Water Sports']
-              }
-            ].map((destination, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
-                className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300"
-              >
-                <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden rounded-t-2xl">
-                  <img 
-                    src={destination.image}
-                    alt={destination.title}
-                    className="w-full h-full object-cover transform group-hover:scale-110 transition duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <div className="flex items-center justify-between">
-                      <span className="text-white font-semibold">{destination.duration}</span>
-                      <div className="flex items-center bg-white/20 backdrop-blur-sm px-2 py-1 rounded-full">
-                        <svg className="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                        </svg>
-                        <span className="ml-1 text-white text-sm">{destination.rating}</span>
-                      </div>
+                      <span>Temple open from May to October</span>
+                    </div>
+                    <div className="flex items-center text-gray-700">
+                      <svg className="w-4 h-4 text-amber-500 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>Famous for its hot springs</span>
+                    </div>
+                    <div className="flex items-center text-gray-700">
+                      <svg className="w-4 h-4 text-amber-500 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>Ancient architecture</span>
+                    </div>
+                    <div className="flex items-center text-gray-700">
+                      <svg className="w-4 h-4 text-amber-500 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>Spectacular Himalayan views</span>
                     </div>
                   </div>
-                </div>
-
-                <div className="p-4 sm:p-6">
-                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">{destination.title}</h3>
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-2xl font-bold text-[#1e40af]">{destination.price}</span>
-                    <span className="text-sm text-gray-500">{destination.reviews} reviews</span>
-                  </div>
-
-                  <div className="space-y-2 mb-6">
-                    {destination.features.map((feature, i) => (
-                      <div key={i} className="flex items-center text-gray-600">
-                        <svg className="w-4 h-4 text-[#ff5722] mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        <span className="text-sm">{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  <button className="w-full py-3 bg-[#ff5722] text-white rounded-xl font-medium hover:bg-[#e64a19] transition duration-300 transform hover:scale-[1.02]">
-                    Book Now
-                  </button>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mt-12 sm:mt-16"
-          >
-            <Link
-              to="/destinations"
-              className="inline-flex items-center bg-[#1e40af] hover:bg-[#1e3a8a] text-white font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-full transition duration-300 transform hover:scale-105"
-            >
-              View All Destinations
-              <svg className="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-            </Link>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Premium Travel Collections Section */}
-      <section className="relative py-32 bg-gradient-to-b from-[#1e40af] via-[#0f2d6e] to-[#1e40af] overflow-hidden">
-        {/* Background Elements */}
-        <div className="absolute inset-0">
-          <div className="absolute top-0 left-0 w-full h-full bg-[url('/noise.png')] opacity-10 mix-blend-overlay"></div>
-          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-[#ff5722]/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#1e40af]/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-          <div className="absolute top-1/2 left-1/2 w-48 h-48 bg-white/5 rounded-full blur-2xl animate-pulse delay-500"></div>
-        </div>
-
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-20"
-          >
-            <span className="inline-block text-lg tracking-wider text-[#ff5722] mb-4">
-              PREMIUM COLLECTIONS
-            </span>
-            <h2 className="text-5xl sm:text-6xl font-bold text-white mb-8">
-              Curated Travel Experiences
-            </h2>
-            <p className="text-xl text-white/80 max-w-2xl mx-auto">
-              Discover our handpicked selection of extraordinary journeys designed for the discerning traveler
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                title: 'Luxury Island Escapes',
-                description: 'Experience paradise in our most exclusive island destinations',
-                image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-                price: 'From $3,999',
-                duration: '7-14 Days',
-                features: ['Private Villas', 'Gourmet Dining', 'Spa Retreats']
-              },
-              {
-                title: 'Cultural Heritage Tours',
-                description: 'Immerse yourself in ancient traditions and historical wonders',
-                image: 'https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-                price: 'From $2,999',
-                duration: '10-15 Days',
-                features: ['Expert Guides', 'Exclusive Access', 'Cultural Workshops']
-              },
-              {
-                title: 'Adventure Expeditions',
-                description: 'Challenge yourself with thrilling adventures in breathtaking landscapes',
-                image: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2068&q=80',
-                price: 'From $4,499',
-                duration: '12-18 Days',
-                features: ['Professional Guides', 'Premium Equipment', 'Safety First']
-              }
-            ].map((collection, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
-                className="group relative overflow-hidden rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20 transition duration-500"
-              >
-                <div className="relative h-64 overflow-hidden">
-                  <img
-                    src={collection.image}
-                    alt={collection.title}
-                    className="w-full h-full object-cover transform group-hover:scale-110 transition duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-                  <div className="absolute top-4 right-4 bg-[#ff5722] text-white px-4 py-2 rounded-full text-sm font-semibold">
-                    {collection.price}
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold text-white mb-2">{collection.title}</h3>
-                  <p className="text-white/80 mb-4">{collection.description}</p>
-                  <div className="flex items-center text-white/60 mb-4">
-                    <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <span>{collection.duration}</span>
-                  </div>
-                  <div className="space-y-2 mb-6">
-                    {collection.features.map((feature, featureIndex) => (
-                      <div key={featureIndex} className="flex items-center text-white/80">
-                        <svg className="w-5 h-5 mr-2 text-[#ff5722]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        <span>{feature}</span>
-                      </div>
-                    ))}
-                  </div>
+                  
                   <Link
-                    to="/destinations"
-                    className="inline-flex items-center text-[#ff5722] font-semibold group-hover:text-white transition duration-300"
+                    to="/badrinath"
+                    className="inline-flex items-center text-amber-600 font-medium hover:text-amber-700 transition duration-300 group"
                   >
-                    Explore Collection
-                    <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    Explore Badrinath
+                    <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>
                   </Link>
                 </div>
-              </motion.div>
-            ))}
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-center mt-16"
-          >
-            <Link
-              to="/destinations"
-              className="inline-flex items-center bg-[#ff5722] hover:bg-[#e64a19] text-white font-bold py-4 px-8 rounded-full transition duration-300 transform hover:scale-105"
+                
+                {/* Image - Right */}
+                <div className="md:w-1/2 relative h-64 md:h-auto overflow-hidden">
+                  <div className="absolute inset-0">
+                    <img 
+                      src="/badrinath.jpg" 
+                      alt="Badrinath Temple"
+                      className="w-full h-full object-cover object-center"
+                    />
+                  </div>
+                  <div className="absolute bottom-0 left-0 bg-gradient-to-r from-amber-600 to-amber-500 text-white py-2 px-4 rounded-tr-lg z-10">
+                    <span className="font-medium">Lord Vishnu</span>
+                  </div>
+                  {/* Gradient overlay for better text visibility */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                </div>
+              </div>
+            </motion.div>
+            
+            {/* Second destination - Kedarnath */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
             >
-              View All Collections
-              <svg className="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </Link>
-          </motion.div>
+              <div className="md:flex flex-row-reverse">
+                {/* Content - Right */}
+                <div className="md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
+                  <h3 className="text-2xl md:text-3xl font-bold text-[#1e40af] mb-3">Kedarnath</h3>
+                  <div className="h-1 w-16 bg-amber-500 mb-6 rounded-full"></div>
+                  
+                  <div className="flex items-center text-sm text-gray-600 mb-2">
+                    <svg className="w-4 h-4 text-amber-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <span>Rudraprayag District, Uttarakhand</span>
+                  </div>
+                  
+                  <div className="flex items-center text-sm text-gray-600 mb-4">
+                    <svg className="w-4 h-4 text-amber-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                    </svg>
+                    <span>Elevation: 3,583 meters</span>
+                  </div>
+                  
+                  <p className="text-gray-600 mb-6 leading-relaxed">
+                    One of the twelve Jyotirlingas of Lord Shiva, Kedarnath is nestled in the Garhwal Himalayan range. The temple is only accessible by a 16 km trek from Gaurikund and remains closed during winter due to heavy snowfall.
+                  </p>
+                  
+                  <div className="grid grid-cols-2 gap-3 mb-6">
+                    <div className="flex items-center text-gray-700">
+                      <svg className="w-4 h-4 text-amber-500 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>6-month opening period</span>
+                    </div>
+                    <div className="flex items-center text-gray-700">
+                      <svg className="w-4 h-4 text-amber-500 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>Helicopter services available</span>
+                    </div>
+                    <div className="flex items-center text-gray-700">
+                      <svg className="w-4 h-4 text-amber-500 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>Ancient stone temple</span>
+                    </div>
+                    <div className="flex items-center text-gray-700">
+                      <svg className="w-4 h-4 text-amber-500 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>Mandakini River origin</span>
+                    </div>
+                  </div>
+                  
+                  <Link
+                    to="/kedarnath"
+                    className="inline-flex items-center text-amber-600 font-medium hover:text-amber-700 transition duration-300 group"
+                  >
+                    Explore Kedarnath
+                    <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </Link>
+                </div>
+                
+                {/* Image - Left */}
+                <div className="md:w-1/2 relative h-64 md:h-auto overflow-hidden">
+                  <div className="absolute inset-0">
+                    <img 
+                      src="/kedarnath.jpg" 
+                      alt="Kedarnath Temple"
+                      className="w-full h-full object-cover object-center"
+                    />
+                  </div>
+                  <div className="absolute bottom-0 left-0 bg-gradient-to-r from-amber-600 to-amber-500 text-white py-2 px-4 rounded-tr-lg z-10">
+                    <span className="font-medium">Lord Shiva</span>
+                  </div>
+                  {/* Gradient overlay for better text visibility */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                </div>
+              </div>
+            </motion.div>
+            
+            {/* Third destination - Gangotri */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
+            >
+              <div className="md:flex">
+                {/* Content - Left */}
+                <div className="md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
+                  <h3 className="text-2xl md:text-3xl font-bold text-[#1e40af] mb-3">Gangotri</h3>
+                  <div className="h-1 w-16 bg-amber-500 mb-6 rounded-full"></div>
+                  
+                  <div className="flex items-center text-sm text-gray-600 mb-2">
+                    <svg className="w-4 h-4 text-amber-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <span>Uttarkashi District, Uttarakhand</span>
+                  </div>
+                  
+                  <div className="flex items-center text-sm text-gray-600 mb-4">
+                    <svg className="w-4 h-4 text-amber-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                    </svg>
+                    <span>Elevation: 3,100 meters</span>
+                  </div>
+                  
+                  <p className="text-gray-600 mb-6 leading-relaxed">
+                    Gangotri is the origin of the River Ganges and seat of the goddess Ganga. The actual source of the river is at Gaumukh, the snout of the Gangotri Glacier, about 19 km further uphill from Gangotri.
+                  </p>
+                  
+                  <div className="grid grid-cols-2 gap-3 mb-6">
+                    <div className="flex items-center text-gray-700">
+                      <svg className="w-4 h-4 text-amber-500 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>Sacred river origin</span>
+                    </div>
+                    <div className="flex items-center text-gray-700">
+                      <svg className="w-4 h-4 text-amber-500 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>Beautiful temple architecture</span>
+                    </div>
+                    <div className="flex items-center text-gray-700">
+                      <svg className="w-4 h-4 text-amber-500 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>Surrounded by pine forests</span>
+                    </div>
+                    <div className="flex items-center text-gray-700">
+                      <svg className="w-4 h-4 text-amber-500 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>Panoramic mountain views</span>
+                    </div>
+                  </div>
+                  
+                  <Link
+                    to="/gangotri"
+                    className="inline-flex items-center text-amber-600 font-medium hover:text-amber-700 transition duration-300 group"
+                  >
+                    Explore Gangotri
+                    <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </Link>
+                </div>
+                
+                {/* Image - Right */}
+                <div className="md:w-1/2 relative h-64 md:h-auto overflow-hidden">
+                  <div className="absolute inset-0">
+                    <img 
+                      src="/gangatri.jpg" 
+                      alt="Gangotri Temple"
+                      className="w-full h-full object-cover object-center"
+                    />
+                  </div>
+                  <div className="absolute bottom-0 left-0 bg-gradient-to-r from-amber-600 to-amber-500 text-white py-2 px-4 rounded-tr-lg z-10">
+                    <span className="font-medium">Goddess Ganga</span>
+                  </div>
+                  {/* Gradient overlay for better text visibility */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                </div>
+              </div>
+            </motion.div>
+            
+            {/* Fourth destination - Yamunotri */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
+            >
+              <div className="md:flex flex-row-reverse">
+                {/* Content - Right */}
+                <div className="md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
+                  <h3 className="text-2xl md:text-3xl font-bold text-[#1e40af] mb-3">Yamunotri</h3>
+                  <div className="h-1 w-16 bg-amber-500 mb-6 rounded-full"></div>
+                  
+                  <div className="flex items-center text-sm text-gray-600 mb-2">
+                    <svg className="w-4 h-4 text-amber-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <span>Uttarkashi District, Uttarakhand</span>
+                  </div>
+                  
+                  <div className="flex items-center text-sm text-gray-600 mb-4">
+                    <svg className="w-4 h-4 text-amber-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                    </svg>
+                    <span>Elevation: 3,293 meters</span>
+                  </div>
+                  
+                  <p className="text-gray-600 mb-6 leading-relaxed">
+                    The source of the Yamuna River and the seat of the goddess Yamuna. The temple is situated close to the hot water springs and represents the starting point of the Char Dham Yatra.
+                  </p>
+                  
+                  <div className="grid grid-cols-2 gap-3 mb-6">
+                    <div className="flex items-center text-gray-700">
+                      <svg className="w-4 h-4 text-amber-500 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>Natural hot springs</span>
+                    </div>
+                    <div className="flex items-center text-gray-700">
+                      <svg className="w-4 h-4 text-amber-500 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>Surya Kund</span>
+                    </div>
+                    <div className="flex items-center text-gray-700">
+                      <svg className="w-4 h-4 text-amber-500 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>Divya Shila worship</span>
+                    </div>
+                    <div className="flex items-center text-gray-700">
+                      <svg className="w-4 h-4 text-amber-500 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>Challenging trek routes</span>
+                    </div>
+                  </div>
+                  
+                  <Link
+                    to="/yamunotri"
+                    className="inline-flex items-center text-amber-600 font-medium hover:text-amber-700 transition duration-300 group"
+                  >
+                    Explore Yamunotri
+                    <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </Link>
+                </div>
+                
+                {/* Image - Left */}
+                <div className="md:w-1/2 relative h-64 md:h-auto overflow-hidden">
+                  <div className="absolute inset-0">
+                    <img 
+                      src="/Yamunotri.jpg" 
+                      alt="Yamunotri Temple"
+                      className="w-full h-full object-cover object-center"
+                    />
+                  </div>
+                  <div className="absolute bottom-0 left-0 bg-gradient-to-r from-amber-600 to-amber-500 text-white py-2 px-4 rounded-tr-lg z-10">
+                    <span className="font-medium">Goddess Yamuna</span>
+                  </div>
+                  {/* Gradient overlay for better text visibility */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
-
+      
       {/* Why Choose Us Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1031,39 +786,57 @@ const Home = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
+            <span className="text-[#ff5722] font-semibold text-lg tracking-wider mb-4 block">
+              WHY CHOOSE US
+            </span>
             <h2 className="text-3xl sm:text-4xl font-bold text-[#1e40af] mb-4">
-              Why Choose ANT Travels
+              Travel Worry-Free with ANT Travels
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Experience the difference with our premium travel services
+              Experience the difference with our specialized Char Dham transportation services
             </p>
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                title: 'Expert Travel Planning',
-                description: 'Our experienced team creates personalized itineraries tailored to your preferences.',
-                icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2',
+                title: 'Mountain-Experienced Drivers',
+                description: 'Our drivers have years of experience navigating the challenging Himalayan terrain and are familiar with all routes to Char Dham.',
+                icon: 'M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636',
               },
               {
-                title: 'Global Destinations',
-                description: 'Access to exclusive locations and unique experiences around the world.',
-                icon: 'M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
+                title: 'Well-Maintained Vehicles',
+                description: 'All our vehicles undergo rigorous safety checks and are specially equipped for mountain travel with proper maintenance.',
+                icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
               },
               {
-                title: 'Best Value Guaranteed',
-                description: 'Competitive prices with premium services and exclusive deals.',
-                icon: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
+                title: '24/7 Support Team',
+                description: 'Our dedicated support team is available round-the-clock to assist with any issues during your pilgrimage journey.',
+                icon: 'M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z',
+              },
+              {
+                title: 'Flexible Booking Options',
+                description: 'Choose from various vehicle types and customize your itinerary based on your group size and preferences.',
+                icon: 'M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z',
+              },
+              {
+                title: 'Local Knowledge',
+                description: 'Benefit from our deep understanding of local conditions, best stop points, and accommodation options throughout the route.',
+                icon: 'M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7',
+              },
+              {
+                title: 'Pilgrim-Focused Service',
+                description: 'Our services are specially designed considering the needs and comfort of pilgrims undertaking this sacred journey.',
+                icon: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z',
               },
             ].map((feature, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
-                className="p-8 rounded-2xl bg-gradient-to-br from-[#1e40af]/5 to-[#ff5722]/5 hover:from-[#1e40af]/10 hover:to-[#ff5722]/10 transition duration-300 group"
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="p-6 rounded-2xl bg-white shadow-md hover:shadow-lg transition duration-300 group"
               >
-                <div className="w-16 h-16 bg-[#ff5722] rounded-full flex items-center justify-center mb-6 group-hover:rotate-12 transition duration-300">
+                <div className="w-16 h-16 bg-[#1e40af] rounded-full flex items-center justify-center mb-6 group-hover:bg-[#ff5722] transition duration-300">
                   <svg className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={feature.icon} />
                   </svg>
@@ -1077,7 +850,7 @@ const Home = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 bg-gradient-to-b from-[#f4f4f4] to-white">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1085,33 +858,36 @@ const Home = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
+            <span className="text-[#ff5722] font-semibold text-lg tracking-wider mb-4 block">
+              TESTIMONIALS
+            </span>
             <h2 className="text-3xl sm:text-4xl font-bold text-[#1e40af] mb-4">
-              What Our Travelers Say
+              What Our Pilgrims Say
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Hear from our satisfied customers about their experiences
+              Hear from pilgrims who experienced our Char Dham Yatra transportation services
             </p>
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                name: 'Sarah Johnson',
-                role: 'Travel Enthusiast',
-                image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
-                quote: 'The best travel experience I\'ve ever had! Everything was perfectly organized.',
-              },
-              {
-                name: 'Michael Chen',
-                role: 'Adventure Seeker',
+                name: 'Rajesh Kumar',
+                role: 'Family Group of 6',
                 image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
-                quote: 'Incredible destinations and outstanding service. Will definitely travel with ANT again!',
+                quote: 'The vehicle provided by ANT Travels for our Char Dham journey was exceptional. The driver was extremely skilled on mountain roads and very courteous. Will definitely recommend!'
               },
               {
-                name: 'Emily Rodriguez',
-                role: 'Luxury Traveler',
-                image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80',
-                quote: 'Attention to detail and personalized service made our trip unforgettable.',
+                name: 'Sunita Sharma',
+                role: 'Senior Pilgrim Group',
+                image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
+                quote: 'As senior citizens, we were concerned about the difficult journey, but ANT Travels\' comfortable tempo traveller and caring staff made our pilgrimage smooth and memorable.'
               },
+              {
+                name: 'Amit Patel',
+                role: 'Corporate Group Organizer',
+                image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
+                quote: 'Organized a Char Dham trip for 40 employees. ANT Travels provided an excellent luxury bus with all amenities and their logistics management was flawless.'
+              }
             ].map((testimonial, index) => (
               <motion.div
                 key={index}
@@ -1138,8 +914,98 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Special Offers Section */}
-      <section className="py-20 bg-[#1e40af] text-white">
+      {/* FAQ Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <span className="text-[#ff5722] font-semibold text-lg tracking-wider mb-4 block">
+              FREQUENTLY ASKED QUESTIONS
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#1e40af] mb-4">
+              Common Questions About Char Dham Travel
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Find answers to the most frequently asked questions about our transportation services
+            </p>
+          </motion.div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+            {[
+              {
+                question: "What is the best time to undertake Char Dham Yatra?",
+                answer: "The best time for Char Dham Yatra is from May to June and September to October. The shrines remain closed during winter (November to April) due to heavy snowfall. May 1st marks the traditional beginning of the Yatra season when the temples reopen."
+              },
+              {
+                question: "Do you provide accommodation during the journey?",
+                answer: "While our primary service is transportation, we can arrange accommodation packages at hotels, guesthouses, and dharamshalas at all major stops along the Char Dham route. Just let us know your preferences during booking."
+              },
+              {
+                question: "What types of vehicles do you offer for Char Dham Yatra?",
+                answer: "We offer a variety of vehicles including SUVs (Toyota Innova, Mahindra Scorpio), Tempo Travellers (9-14 seater), Mini Buses (20-30 seater), and Luxury Buses (35-45 seater) depending on your group size and comfort requirements."
+              },
+              {
+                question: "Are your vehicles suitable for the mountain terrain?",
+                answer: "Yes, all our vehicles are specially maintained for mountain travel with powerful engines, good ground clearance, and safety features. They undergo rigorous checks before each journey to ensure reliability on challenging mountain roads."
+              },
+              {
+                question: "What is included in your transportation packages?",
+                answer: "Our basic packages include the vehicle with an experienced driver, fuel costs, all taxes and permits, driver allowances, and 24/7 customer support. Premium packages may include additional amenities, refreshments, and onboard facilities."
+              },
+              {
+                question: "How do I book a vehicle for Char Dham Yatra?",
+                answer: "You can book through our website by filling the inquiry form, calling our customer service number, or visiting our office. We recommend booking at least 1-2 months in advance during peak season (May-June) to ensure availability."
+              },
+              {
+                question: "What is your cancellation policy?",
+                answer: "Cancellations made 30+ days before departure receive a 90% refund, 15-29 days before receive a 70% refund, and 7-14 days before receive a 50% refund. Cancellations less than 7 days before departure are non-refundable."
+              },
+              {
+                question: "Do you provide assistance if the vehicle breaks down?",
+                answer: "Yes, we have a network of service points along the Char Dham route. In case of any breakdown, we provide immediate assistance and arrange for an alternative vehicle with minimal delay to ensure your journey continues smoothly."
+              }
+            ].map((faq, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="bg-white border border-gray-100 rounded-xl p-6 shadow-md hover:shadow-lg transition duration-300"
+              >
+                <h3 className="text-xl font-bold text-[#1e40af] mb-4">{faq.question}</h3>
+                <p className="text-gray-600">{faq.answer}</p>
+              </motion.div>
+            ))}
+          </div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mt-12"
+          >
+            <p className="text-gray-600 mb-6">
+              Have more questions? Our team is here to assist you with any inquiries about Char Dham transportation.
+            </p>
+            <Link
+              to="/contact-us"
+              className="inline-flex items-center bg-[#1e40af] hover:bg-[#1e3a8a] text-white font-bold py-3 px-6 rounded-full transition duration-300"
+            >
+              Contact Our Support Team
+              <svg className="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Call to Action Section */}
+      <section className="py-20 bg-gradient-to-b from-[#1e40af] to-[#0f2d6e] text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -1148,273 +1014,50 @@ const Home = () => {
               transition={{ duration: 0.8 }}
             >
               <h2 className="text-3xl sm:text-4xl font-bold mb-6">
-                Summer Vacation Deals
+                Begin Your Sacred Journey Today
               </h2>
               <p className="text-xl text-white/90 mb-8">
-                Book your summer getaway now and enjoy exclusive discounts on our most popular destinations.
+                The Char Dham Yatra season has begun! Book your transportation now to secure the best vehicles and experienced drivers for your pilgrimage.
               </p>
-              <Link
-                to="/destinations"
-                className="bg-[#ff5722] hover:bg-[#e64a19] text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105 inline-block"
-              >
-                View Offers
-              </Link>
+              <div className="flex flex-wrap gap-4">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-8 py-4 bg-[#ff5722] text-white font-bold rounded-full shadow-lg hover:shadow-xl hover:bg-[#e64a19] transition duration-300"
+                >
+                  Book Transportation
+                </motion.button>
+                <Link
+                  to="/contact-us"
+                  className="px-8 py-4 bg-transparent text-white font-bold rounded-full border-2 border-white/30 hover:border-white/70 hover:bg-white/10 transition duration-300"
+                >
+                  Contact Us
+                </Link>
+              </div>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="relative"
+              className="relative rounded-xl overflow-hidden"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-[#ff5722]/20 to-[#1e40af]/20 rounded-2xl"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent z-10"></div>
               <img
-                src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80"
-                alt="Summer Vacation"
-                className="w-full h-96 object-cover rounded-2xl"
+                src="https://images.unsplash.com/photo-1591777851536-24606c6d749b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"
+                alt="Kedarnath Temple"
+                className="w-full h-96 object-cover rounded-xl"
               />
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Newsletter Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center"
-          >
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#1e40af] mb-4">
-              Stay Updated
-            </h2>
-            <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-              Subscribe to our newsletter for the latest travel deals and updates
-            </p>
-            <form className="max-w-md mx-auto">
-              <div className="flex flex-col sm:flex-row gap-4">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="flex-grow px-6 py-3 rounded-full bg-gray-100 focus:outline-none focus:ring-2 focus:ring-[#ff5722] text-gray-800"
-                />
-                <button
-                  type="submit"
-                  className="bg-[#ff5722] hover:bg-[#e64a19] text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105"
-                >
-                  Subscribe
-                </button>
-              </div>
-            </form>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Travel Blog Section */}
-      <section className="py-20 bg-gradient-to-b from-white to-[#f4f4f4]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#1e40af] mb-4">
-              Latest Travel Stories
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Discover inspiring travel experiences and expert tips from our blog
-            </p>
-          </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                title: 'Hidden Gems of Southeast Asia',
-                excerpt: 'Explore the lesser-known destinations that will take your breath away.',
-                image: 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-                date: 'May 15, 2024',
-                author: 'Travel Expert',
-              },
-              {
-                title: 'Luxury Travel on a Budget',
-                excerpt: 'Learn how to experience luxury travel without breaking the bank.',
-                image: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80',
-                date: 'May 10, 2024',
-                author: 'Budget Traveler',
-              },
-              {
-                title: 'Sustainable Travel Guide',
-                excerpt: 'Discover how to travel responsibly and make a positive impact.',
-                image: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80',
-                date: 'May 5, 2024',
-                author: 'Eco Traveler',
-              },
-            ].map((post, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
-                className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300 group"
-              >
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={post.image}
-                    alt={post.title}
-                    className="w-full h-full object-cover transform group-hover:scale-110 transition duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                </div>
-                <div className="p-6">
-                  <div className="flex items-center text-sm text-gray-500 mb-4">
-                    <span>{post.date}</span>
-                    <span className="mx-2">•</span>
-                    <span>{post.author}</span>
-                  </div>
-                  <h3 className="text-xl font-bold text-[#1e40af] mb-2">{post.title}</h3>
-                  <p className="text-gray-600 mb-4">{post.excerpt}</p>
-                  <Link
-                    to="#"
-                    className="text-[#ff5722] font-semibold hover:text-[#e64a19] transition duration-300 inline-flex items-center"
-                  >
-                    Read More
-                    <svg className="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </Link>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Popular Activities Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#1e40af] mb-4">
-              Popular Activities
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Experience the most exciting activities at our destinations
-            </p>
-          </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            {[
-              {
-                title: 'Scuba Diving',
-                icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z',
-                description: 'Explore vibrant coral reefs and marine life',
-              },
-              {
-                title: 'Hiking',
-                icon: 'M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z',
-                description: 'Discover breathtaking mountain trails',
-              },
-              {
-                title: 'Cultural Tours',
-                icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4',
-                description: 'Immerse in local traditions and heritage',
-              },
-              {
-                title: 'Wildlife Safari',
-                icon: 'M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
-                description: 'Witness amazing wildlife in their natural habitat',
-              },
-            ].map((activity, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="p-6 rounded-2xl bg-gradient-to-br from-[#1e40af]/5 to-[#ff5722]/5 hover:from-[#1e40af]/10 hover:to-[#ff5722]/10 transition duration-300 group"
-              >
-                <div className="w-16 h-16 bg-[#ff5722] rounded-full flex items-center justify-center mb-6 group-hover:rotate-12 transition duration-300">
-                  <svg className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={activity.icon} />
+              <div className="absolute bottom-6 left-6 z-20">
+                <h3 className="text-2xl font-bold text-white mb-2">Char Dham 2024</h3>
+                <p className="text-white/90">Season started on May 1st</p>
+                <div className="flex items-center mt-4">
+                  <svg className="w-5 h-5 text-[#ff5722] mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
+                  <span className="text-white font-medium">Book early for best availability</span>
                 </div>
-                <h3 className="text-xl font-bold text-[#1e40af] mb-2">{activity.title}</h3>
-                <p className="text-gray-600">{activity.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Travel Tips Section */}
-      <section className="py-20 bg-gradient-to-b from-[#f4f4f4] to-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#1e40af] mb-4">
-              Expert Travel Tips
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Essential advice to make your journey smooth and enjoyable
-            </p>
-          </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {[
-              {
-                title: 'Packing Smart',
-                tips: [
-                  'Roll clothes to save space',
-                  'Use packing cubes for organization',
-                  'Pack versatile clothing items',
-                  'Don\'t forget essential documents',
-                ],
-                icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2',
-              },
-              {
-                title: 'Travel Safety',
-                tips: [
-                  'Keep copies of important documents',
-                  'Stay aware of your surroundings',
-                  'Use secure transportation',
-                  'Keep emergency contacts handy',
-                ],
-                icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
-              },
-            ].map((category, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
-                className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition duration-300"
-              >
-                <div className="flex items-center mb-6">
-                  <div className="w-12 h-12 bg-[#ff5722] rounded-full flex items-center justify-center mr-4">
-                    <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={category.icon} />
-                    </svg>
-                  </div>
-                  <h3 className="text-2xl font-bold text-[#1e40af]">{category.title}</h3>
-                </div>
-                <ul className="space-y-3">
-                  {category.tips.map((tip, tipIndex) => (
-                    <li key={tipIndex} className="flex items-start">
-                      <svg className="h-5 w-5 text-[#ff5722] mr-2 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span className="text-gray-600">{tip}</span>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
