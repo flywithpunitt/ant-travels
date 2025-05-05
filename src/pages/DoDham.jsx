@@ -328,7 +328,6 @@ const DoDham = () => {
               {
                 title: "Do Dham Cars",
                 description: "Our cars are ideal for Do Dham Yatra, offering comfort and flexibility for small groups and families.",
-                icon: <FaCar className="w-12 h-12" />,
                 color: "amber",
                 images: [
                   "/cars/carsswift.jpg",
@@ -341,7 +340,6 @@ const DoDham = () => {
               {
                 title: "Do Dham Vans",
                 description: "Perfect for Do Dham Yatra, our vans provide ample space and comfort for medium-sized groups.",
-                icon: <FaShuttleVan className="w-12 h-12" />,
                 color: "blue",
                 images: [
                   "/vans/tttt7.jpg",
@@ -353,7 +351,6 @@ const DoDham = () => {
               {
                 title: "Do Dham Buses",
                 description: "For large groups on Do Dham Yatra, our luxury buses ensure a safe and comfortable pilgrimage.",
-                icon: <FaBus className="w-12 h-12" />,
                 color: "indigo",
                 images: [
                   "/buses/tant_bus_-2.jpg",
@@ -409,10 +406,6 @@ const DoDham = () => {
                   </div>
                 </div>
                 <div className="p-6 flex-grow flex flex-col">
-                  {/* Icon */}
-                  <div className={`w-16 h-16 rounded-xl bg-${service.color}-50 text-${service.color}-600 flex items-center justify-center mb-6 group-hover:bg-${service.color}-600 group-hover:text-white transition-colors duration-300`}>
-                    {service.icon}
-                  </div>
                   <p className="text-gray-600 mb-6">{service.description}</p>
                   <div className="space-y-3 mb-6">
                     {service.features.map((feature, i) => (

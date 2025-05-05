@@ -394,10 +394,6 @@ const Home = () => {
                   </div>
                 </div>
                 <div className="p-6 flex-grow flex flex-col">
-                  {/* Icon */}
-                  <div className={`w-16 h-16 rounded-xl bg-${service.color}-50 text-${service.color}-600 flex items-center justify-center mb-6 group-hover:bg-${service.color}-600 group-hover:text-white transition-colors duration-300`}>
-                    {service.icon}
-                  </div>
                   <p className="text-gray-600 mb-6">{service.description}</p>
                   <div className="space-y-3 mb-6">
                     {service.features.map((feature, i) => (

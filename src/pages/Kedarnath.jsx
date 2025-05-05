@@ -272,12 +272,12 @@ const Kedarnath = () => {
               For Kedarnath Yatra, we provide a range of well-maintained vans, buses, and cars to suit every group size and comfort level.
             </p>
           </motion.div>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {[
               {
                 title: "Kedarnath Cars",
                 description: "Our cars are ideal for Kedarnath Yatra, offering comfort and flexibility for small groups and families.",
-                icon: <FaCar className="w-12 h-12" />, 
                 color: "amber",
                 images: [
                   "/cars/carsswift.jpg",
@@ -290,7 +290,6 @@ const Kedarnath = () => {
               {
                 title: "Kedarnath Vans",
                 description: "Perfect for Kedarnath Yatra, our vans provide ample space and comfort for medium-sized groups.",
-                icon: <FaShuttleVan className="w-12 h-12" />, 
                 color: "blue",
                 images: [
                   "/vans/tttt7.jpg",
@@ -302,7 +301,6 @@ const Kedarnath = () => {
               {
                 title: "Kedarnath Buses",
                 description: "For large groups on Kedarnath Yatra, our luxury buses ensure a safe and comfortable pilgrimage.",
-                icon: <FaBus className="w-12 h-12" />, 
                 color: "indigo",
                 images: [
                   "/buses/tant_bus_-2.jpg",
@@ -358,10 +356,6 @@ const Kedarnath = () => {
                   </div>
                 </div>
                 <div className="p-6 flex-grow flex flex-col">
-                  {/* Icon */}
-                  <div className={`w-16 h-16 rounded-xl bg-${service.color}-50 text-${service.color}-600 flex items-center justify-center mb-6 group-hover:bg-${service.color}-600 group-hover:text-white transition-colors duration-300`}>
-                    {service.icon}
-                  </div>
                   <p className="text-gray-600 mb-6">{service.description}</p>
                   <div className="space-y-3 mb-6">
                     {service.features.map((feature, i) => (
