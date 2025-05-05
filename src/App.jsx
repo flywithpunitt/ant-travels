@@ -10,6 +10,7 @@ import CharDhamYatra from './pages/CharDhamYatra';
 import DoDham from './pages/DoDham';
 import Badrinath from './pages/Badrinath';
 import Kedarnath from './pages/Kedarnath';
+import Vehicles from './pages/Vehicles';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/dodham" element={<DoDham />} />
           <Route path="/badrinath" element={<Badrinath />} />
           <Route path="/kedarnath" element={<Kedarnath />} />
+          <Route path="/vehicles/:type" element={<Vehicles />} />
         </Routes>
       </Layout>
     </Router>

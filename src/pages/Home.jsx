@@ -2,6 +2,11 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { FaCar, FaBus, FaShuttleVan, FaPercent, FaRegCalendarAlt, FaMapMarkedAlt, FaUsers } from 'react-icons/fa';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 const Home = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -38,8 +43,8 @@ const Home = () => {
 
   return (
     <div className="relative min-h-screen">
-      {/* Hero Section with Image Background */}
-      <section className="relative min-h-[100vh] flex items-center justify-center overflow-hidden">
+      {/* Hero Section with Image Background - Even Smaller Height */}
+      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
         {/* Image Background with Overlay */}
         <div className="absolute inset-0">
           <img 
@@ -77,22 +82,22 @@ const Home = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
             transition={{ duration: 1 }}
-            className="space-y-8 md:space-y-10"
+            className="space-y-4 md:space-y-6"
           >
             {/* Decorative Line */}
             <motion.div 
               initial={{ scaleX: 0 }}
               animate={{ scaleX: isLoaded ? 1 : 0 }}
               transition={{ duration: 1, delay: 0.5 }}
-              className="w-32 h-1 bg-[#ff5722] mx-auto rounded-full"
+              className="w-24 h-1 bg-[#ff5722] mx-auto rounded-full"
             />
 
-            <div className="space-y-6">
+            <div className="space-y-3">
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="text-[#ff5722] text-xl md:text-2xl font-medium tracking-wide uppercase"
+                className="text-[#ff5722] text-base md:text-lg font-medium tracking-wide uppercase"
               >
                 WELCOME TO ANT TRAVELS
               </motion.p>
@@ -101,21 +106,21 @@ const Home = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
-                className="text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-tight tracking-tight"
+                className="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight"
               >
                 Char Dham Yatra
                 <motion.span 
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
                   transition={{ duration: 0.8, delay: 0.7 }}
-                  className="block text-[#ff5722] mt-2 md:mt-4 relative"
+                  className="block text-[#ff5722] mt-1 md:mt-2 relative"
                 >
                   Transportation Services
                   <motion.span
                     initial={{ width: 0 }}
                     animate={{ width: isLoaded ? "100%" : 0 }}
                     transition={{ duration: 1.2, delay: 1 }}
-                    className="absolute -bottom-2 left-0 h-1 bg-white/30 rounded-full"
+                    className="absolute -bottom-1 left-0 h-1 bg-white/30 rounded-full"
                   />
                 </motion.span>
               </motion.h1>
@@ -125,7 +130,7 @@ const Home = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
               transition={{ duration: 0.8, delay: 0.9 }}
-              className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto px-4 leading-relaxed"
+              className="text-base md:text-lg text-white/90 max-w-2xl mx-auto px-4 leading-relaxed"
             >
               Reliable and comfortable transportation for your sacred journey to 
               Badrinath, Kedarnath, Gangotri, and Yamunotri.
@@ -135,12 +140,12 @@ const Home = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
               transition={{ duration: 0.8, delay: 1.1 }}
-              className="flex flex-col sm:flex-row gap-6 justify-center mt-10 px-4"
+              className="flex flex-col sm:flex-row gap-3 justify-center mt-4 px-4"
             >
               <motion.button
                 whileHover={{ scale: 1.05, backgroundColor: '#ff7043' }}
                 whileTap={{ scale: 0.95 }}
-                className="px-10 py-4 bg-[#ff5722] text-white text-lg font-medium rounded-full shadow-xl hover:shadow-[#ff5722]/30 transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden group"
+                className="px-6 py-2.5 bg-[#ff5722] text-white text-base font-medium rounded-full shadow-lg hover:shadow-[#ff5722]/30 transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden group"
               >
                 <span className="relative z-10">Book Your Vehicle</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-[#ff7043] to-[#ff5722] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -150,7 +155,7 @@ const Home = () => {
               <motion.button
                 whileHover={{ scale: 1.05, borderColor: "rgba(255,255,255,0.5)" }}
                 whileTap={{ scale: 0.95 }}
-                className="px-10 py-4 bg-transparent text-white text-lg font-medium rounded-full border-2 border-white/30 hover:bg-white/10 transition-all duration-300 transform hover:-translate-y-1 backdrop-blur-sm"
+                className="px-6 py-2.5 bg-transparent text-white text-base font-medium rounded-full border-2 border-white/30 hover:bg-white/10 transition-all duration-300 transform hover:-translate-y-1 backdrop-blur-sm"
               >
                 View Services
               </motion.button>
@@ -295,14 +300,11 @@ const Home = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-20"
           >
-            <span className="text-[#ff5722] font-semibold text-lg tracking-wider mb-4 block">
-              OUR SERVICES
-            </span>
             <h2 className="text-4xl md:text-5xl font-bold text-[#1e40af] mb-6">
               Transportation Options
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Choose from our fleet of well-maintained vehicles for a comfortable and safe journey to the sacred Char Dham shrines
+              For Char Dham and Do Dham Yatra, we provide a range of well-maintained vans, buses, and cars to suit every group size and comfort level.
             </p>
           </motion.div>
 
@@ -310,30 +312,52 @@ const Home = () => {
             {[
               {
                 title: "Premium SUVs",
-                description: "Comfortable SUVs for small families or individual pilgrims. Enjoy personalized service with experienced drivers who know the mountain routes.",
+                description: "Our cars are ideal for Char Dham and Do Dham Yatra, offering comfort and flexibility for small groups and families.",
                 icon: <FaCar className="w-12 h-12" />,
                 color: "amber",
-                features: ["4-6 seater capacity", "Air conditioned", "24-hour service", "Experienced mountain drivers"],
-                price: "Starting from ₹15,000 per day",
-                image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
+                images: [
+                  "/cars/carsswift.jpg",
+                  "/cars/fortuner.jpg",
+                  "/cars/ttttttttttttttttttt1.jpg"
+                ],
+                features: ["Toyota Fortuner", "Mahindra Scorpio", "Tata Safari", "MG Gloster", "Toyota Innova Crysta"],
+                price: "Starting from ₹15,000 per day"
               },
               {
                 title: "Tempo Travellers",
-                description: "Perfect for medium-sized groups or families traveling together. Our Tempo Travellers provide ample space with comfortable seating arrangements.",
+                description: "Perfect for Char Dham and Do Dham Yatra, our vans provide ample space and comfort for medium-sized groups.",
                 icon: <FaShuttleVan className="w-12 h-12" />,
                 color: "blue",
-                features: ["9-14 seater capacity", "Air conditioned", "Ample luggage space", "Onboard basic amenities"],
-                price: "Starting from ₹20,000 per day",
-                image: "https://images.unsplash.com/photo-1580274455191-1c62238fa333?ixlib=rb-4.0.3&auto=format&fit=crop&w=1364&q=80"
+                images: [
+                  "/vans/tttt7.jpg",
+                  "/vans/tttttt5.jpg"
+                ],
+                features: ["Force Tempo Traveller 12+1", "Force Tempo Traveller 14+1", "Force Tempo Traveller 17+1", "Tempo Traveller Maharaja", "Tempo Traveller Deluxe"],
+                price: "Starting from ₹20,000 per day"
               },
               {
                 title: "Luxury Buses",
-                description: "For large groups undertaking the pilgrimage together. Our buses offer maximum comfort with spacious seating and essential facilities for long journeys.",
+                description: "For large groups on Char Dham and Do Dham Yatra, our luxury buses ensure a safe and comfortable pilgrimage.",
                 icon: <FaBus className="w-12 h-12" />,
                 color: "indigo",
-                features: ["25-40 seater capacity", "Air conditioned", "Onboard toilet facility", "Entertainment system", "Storage compartments"],
-                price: "Starting from ₹30,000 per day",
-                image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=1469&q=80"
+                images: [
+                  "/buses/tant_bus_-2.jpg",
+                  "/buses/tt3.jpg",
+                  "/buses/tttttt6.jpg",
+                  "/buses/ttttttttttt4.jpg",
+                  "/buses/ttttttttttttttttt1.jpg"
+                ],
+                features: [
+                  "AC Deluxe Bus 21 Seater (2+1)",
+                  "AC Deluxe Bus 27 Seater (2+2)",
+                  "AC Deluxe Bus 35 Seater (2+2)",
+                  "AC Deluxe Bus 41 Seater (2+2)",
+                  "AC Luxury Bus 25 Seater (2+1)",
+                  "AC Luxury Bus 31 Seater (2+2)",
+                  "AC Luxury Bus 41 Seater (2+2)",
+                  "AC Seater Sleeper Bus (2+2)"
+                ],
+                price: "Starting from ₹30,000 per day"
               }
             ].map((service, index) => (
               <motion.div
@@ -343,51 +367,67 @@ const Home = () => {
                 transition={{ duration: 0.7, delay: index * 0.2 }}
                 className="flex flex-col rounded-2xl overflow-hidden bg-white shadow-lg hover:shadow-xl transition-all duration-500 group"
               >
-                {/* Vehicle Image */}
+                {/* Vehicle Image Slider */}
                 <div className="relative h-48 overflow-hidden">
-                  <img 
-                    src={service.image}
-                    alt={service.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                  
+                  <Swiper
+                    modules={[Navigation, Pagination, Autoplay]}
+                    navigation
+                    pagination={{ clickable: true }}
+                    autoplay={{ delay: 3500, disableOnInteraction: false }}
+                    loop
+                    className="h-48"
+                  >
+                    {service.images.map((img, i) => (
+                      <SwiperSlide key={i}>
+                        <img
+                          src={img}
+                          alt={service.title}
+                          className="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
                   {/* Title overlay on image */}
                   <div className="absolute bottom-0 left-0 right-0 p-6">
                     <h3 className="text-2xl font-bold text-white">{service.title}</h3>
                   </div>
                 </div>
-                
                 <div className="p-6 flex-grow flex flex-col">
                   {/* Icon */}
                   <div className={`w-16 h-16 rounded-xl bg-${service.color}-50 text-${service.color}-600 flex items-center justify-center mb-6 group-hover:bg-${service.color}-600 group-hover:text-white transition-colors duration-300`}>
                     {service.icon}
                   </div>
-                  
                   <p className="text-gray-600 mb-6">{service.description}</p>
-                  
                   <div className="space-y-3 mb-6">
                     {service.features.map((feature, i) => (
                       <div key={i} className="flex items-center text-gray-600">
                         <svg className="w-5 h-5 text-[#ff5722] mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                         </svg>
-                        <span className="text-sm">{feature}</span>
+                        <button
+                          className="text-sm text-blue-700 underline hover:text-blue-900 focus:outline-none bg-transparent border-none cursor-pointer"
+                          onClick={() => window.location.href = `/booking?vehicle=${encodeURIComponent(feature)}`}
+                          type="button"
+                        >
+                          {feature}
+                        </button>
                       </div>
                     ))}
                   </div>
-                  
                   <div className="mt-auto">
                     <div className="font-bold text-lg text-[#1e40af] mb-6">
                       {service.price}
                     </div>
-                    
-                    <button className={`w-full py-3 px-4 bg-${service.color}-600 text-white rounded-xl font-medium hover:bg-[#ff5722] transition duration-300 flex items-center justify-center group`}>
-                      <span>Book Now</span>
+                    <Link
+                      to={`/vehicles/${service.title.toLowerCase().includes('cars') ? 'cars' : service.title.toLowerCase().includes('vans') ? 'vans' : 'buses'}`}
+                      className={`w-full py-3 px-4 bg-${service.color}-600 text-white rounded-xl font-medium hover:bg-[#ff5722] transition duration-300 flex items-center justify-center group`}
+                    >
+                      <span>View More</span>
                       <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                       </svg>
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </motion.div>
@@ -584,16 +624,21 @@ const Home = () => {
                 <div className="md:w-1/2 relative h-64 md:h-auto overflow-hidden">
                   <div className="absolute inset-0">
                     <img 
-                      src="/kedarnath.jpg" 
+                      src="/chardham/chardham-banner.jpg"
                       alt="Kedarnath Temple"
-                      className="w-full h-full object-cover object-center"
+                      className="w-full h-96 object-cover rounded-xl"
                     />
                   </div>
-                  <div className="absolute bottom-0 left-0 bg-gradient-to-r from-amber-600 to-amber-500 text-white py-2 px-4 rounded-tr-lg z-10">
-                    <span className="font-medium">Lord Shiva</span>
+                  <div className="absolute bottom-6 left-6 z-20">
+                    <h3 className="text-2xl font-bold text-white mb-2">Char Dham 2024</h3>
+                    <p className="text-white/90">Season started on May 1st</p>
+                    <div className="flex items-center mt-4">
+                      <svg className="w-5 h-5 text-[#ff5722] mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                      <span className="text-white font-medium">Book early for best availability</span>
+                    </div>
                   </div>
-                  {/* Gradient overlay for better text visibility */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
                 </div>
               </div>
             </motion.div>
@@ -1043,7 +1088,7 @@ const Home = () => {
             >
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent z-10"></div>
               <img
-                src="https://images.unsplash.com/photo-1591777851536-24606c6d749b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"
+                src="/chardham/chardham-banner.jpg"
                 alt="Kedarnath Temple"
                 className="w-full h-96 object-cover rounded-xl"
               />
