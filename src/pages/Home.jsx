@@ -643,7 +643,7 @@ const Home = () => {
                 <div className="md:w-1/2 relative h-64 md:h-auto overflow-hidden">
                   <div className="absolute inset-0">
                     <img 
-                      src="/public/yamunotri.jpg" 
+                      src="/Yamunotri.jpg" 
                       alt="Char Dham Yatra"
                       className="w-full h-full object-cover object-center"
                     />
@@ -710,7 +710,7 @@ const Home = () => {
                 <div className="md:w-1/2 relative h-64 md:h-auto overflow-hidden">
                   <div className="absolute inset-0">
                     <img 
-                      src="/public/gangatri.jpg"
+                      src="/gangatri.jpg"
                       alt="Do Dham Yatra"
                       className="w-full h-96 object-cover rounded-xl"
                     />
