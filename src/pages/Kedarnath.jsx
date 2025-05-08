@@ -26,7 +26,7 @@ const Kedarnath = () => {
         {/* Image Background with Overlay */}
         <div className="absolute inset-0">
           <img 
-            src="/public/kedarnath.jpg" 
+            src="/kedarnath.jpg" 
             alt="Kedarnath Temple"
             className="w-full h-full object-cover"
           />
@@ -395,7 +395,7 @@ const Kedarnath = () => {
               
               <div className="rounded-xl overflow-hidden shadow-md">
                 <img 
-                  src="/public/kd2.jpg" 
+                  src="/kd2.jpg" 
                   alt="Kedarnath Temple Close-up" 
                   className="w-full h-full object-cover"
                 />
@@ -461,7 +461,7 @@ const Kedarnath = () => {
             <div className="grid md:grid-cols-2 gap-8 mb-12">
               <div className="rounded-xl overflow-hidden shadow-md">
                 <img 
-                  src="/public/kdpath.jpg" 
+                  src="/kdpath.jpg" 
                   alt="Kedarnath Trek Path" 
                   className="w-full h-full object-cover"
                 />
@@ -509,7 +509,7 @@ const Kedarnath = () => {
                   <h4 className="font-bold text-lg mb-3 text-center">Pony/Horse Ride</h4>
                   <div className="text-center mb-4">
                     <img 
-                      src="/public/kdpath.jpg" 
+                      src="/kdpath.jpg" 
                       alt="Horse Ride to Kedarnath" 
                       className="w-full h-40 object-cover rounded-lg"
                     />
@@ -534,7 +534,7 @@ const Kedarnath = () => {
                   <h4 className="font-bold text-lg mb-3 text-center">Palki/Doli Service</h4>
                   <div className="text-center mb-4">
                     <img 
-                      src="/public/kedarnath.jpg" 
+                      src="/kedarnath.jpg" 
                       alt="Palki/Doli Service" 
                       className="w-full h-40 object-cover rounded-lg"
                     />
@@ -559,7 +559,7 @@ const Kedarnath = () => {
                   <h4 className="font-bold text-lg mb-3 text-center">Porter/Pithu Service</h4>
                   <div className="text-center mb-4">
                     <img 
-                      src="/public/yamunotri.jpg" 
+                      src="/yamunotri.jpg" 
                       alt="Porter Service" 
                       className="w-full h-40 object-cover rounded-lg"
                     />

@@ -26,7 +26,7 @@ const Badrinath = () => {
         {/* Image Background with Overlay */}
         <div className="absolute inset-0">
           <img 
-            src="/public/badrinath.jpg" 
+            src="/badrinath.jpg" 
             alt="Badrinath Temple"
             className="w-full h-full object-cover"
           />
@@ -396,7 +396,7 @@ const Badrinath = () => {
               
               <div className="rounded-xl overflow-hidden shadow-md">
                 <img 
-                  src="/public/gangatri.jpg" 
+                  src="/gangatri.jpg" 
                   alt="Badrinath Temple Close-up" 
                   className="w-full h-full object-cover"
                 />

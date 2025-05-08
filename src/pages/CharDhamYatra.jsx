@@ -26,7 +26,7 @@ const CharDhamYatra = () => {
         {/* Image Background with Overlay */}
         <div className="absolute inset-0">
           <img 
-            src="/public/yamunotri.jpg" 
+            src="/yamunotri.jpg" 
             alt="Char Dham Yatra"
             className="w-full h-full object-cover"
           />
@@ -364,7 +364,7 @@ const CharDhamYatra = () => {
             <div className="bg-white rounded-xl overflow-hidden shadow-md transition-transform duration-300 hover:shadow-xl hover:-translate-y-2">
               <div className="h-48 overflow-hidden">
                 <img 
-                  src="/public/badrinath.jpg" 
+                  src="/badrinath.jpg" 
                   alt="Badrinath Temple" 
                   className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                 />
@@ -389,7 +389,7 @@ const CharDhamYatra = () => {
             <div className="bg-white rounded-xl overflow-hidden shadow-md transition-transform duration-300 hover:shadow-xl hover:-translate-y-2">
               <div className="h-48 overflow-hidden">
                 <img 
-                  src="/public/kedarnath.jpg" 
+                  src="/kedarnath.jpg" 
                   alt="Kedarnath Temple" 
                   className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                 />
@@ -414,7 +414,7 @@ const CharDhamYatra = () => {
             <div className="bg-white rounded-xl overflow-hidden shadow-md transition-transform duration-300 hover:shadow-xl hover:-translate-y-2">
               <div className="h-48 overflow-hidden">
                 <img 
-                  src="/public/gangatri.jpg" 
+                  src="/gangatri.jpg" 
                   alt="Gangotri Temple" 
                   className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                 />
