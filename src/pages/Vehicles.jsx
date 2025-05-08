@@ -135,44 +135,7 @@ const Vehicles = () => {
           price: "₹22,000 per day",
           description: "Ideal for medium-sized groups with extra seating capacity."
         },
-        {
-          name: "Tempo Traveller Maharaja",
-          images: ["/vans/maharaja.jpg"],
-          features: [
-            "12 Seater",
-            "Luxury Pushback Seats",
-            "LED TV",
-            "Spacious Interior",
-            "Luggage Space"
-          ],
-          amenities: [
-            "AC",
-            "Music System",
-            "LED TV",
-            "Luggage Carrier"
-          ],
-          price: "₹24,000 per day",
-          description: "Maharaja variant offers luxury seating and entertainment for a premium group experience."
-        },
-        {
-          name: "Tempo Traveller Deluxe 17+1",
-          images: ["/vans/deluxe17.jpg"],
-          features: [
-            "18 Seater",
-            "Deluxe Interior",
-            "Reclining Seats",
-            "Luggage Space",
-            "Good Visibility"
-          ],
-          amenities: [
-            "AC",
-            "Music System",
-            "Comfortable Seats",
-            "Luggage Carrier"
-          ],
-          price: "₹26,000 per day",
-          description: "Deluxe 17+1 is perfect for larger groups seeking comfort and space."
-        },
+
         {
           name: "Tempo Traveller 9+1",
           images: ["/vans/tttt7.jpg"],
