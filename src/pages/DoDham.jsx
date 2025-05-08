@@ -26,7 +26,7 @@ const DoDham = () => {
         {/* Image Background with Overlay */}
         <div className="absolute inset-0">
           <img 
-            src="/chardham-banner.jpg" 
+            src="/chardham/chardham-banner.jpg" 
             alt="Do Dham Yatra"
             className="w-full h-full object-cover"
           />
