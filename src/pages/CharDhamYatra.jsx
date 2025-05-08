@@ -26,7 +26,7 @@ const CharDhamYatra = () => {
         {/* Image Background with Overlay */}
         <div className="absolute inset-0">
           <img 
-            src="/yamunotri.jpg" 
+            src="/Yamunotri.jpg" 
             alt="Char Dham Yatra"
             className="w-full h-full object-cover"
           />
