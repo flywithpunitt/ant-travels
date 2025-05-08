@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { FaCar, FaBus, FaShuttleVan, FaPercent, FaRegCalendarAlt, FaMapMarkedAlt, FaUsers } from 'react-icons/fa';
@@ -10,6 +10,7 @@ import 'swiper/css/pagination';
 
 const Home = () => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Set loaded state after a short delay to trigger animations
@@ -40,6 +41,14 @@ const Home = () => {
       quote: 'Our group of 25 pilgrims had a seamless experience thanks to ANT Travels\' well-maintained buses and professional drivers.'
     }
   ];
+
+  // Helper function to map service title to vehicle type
+  const getVehicleType = (title) => {
+    if (title.toLowerCase().includes('suv')) return 'cars';
+    if (title.toLowerCase().includes('traveller')) return 'vans';
+    if (title.toLowerCase().includes('bus')) return 'buses';
+    return 'buses'; // default
+  };
 
   return (
     <div className="relative min-h-screen">
@@ -85,12 +94,7 @@ const Home = () => {
             className="space-y-4 md:space-y-6"
           >
             {/* Decorative Line */}
-            <motion.div 
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: isLoaded ? 1 : 0 }}
-              transition={{ duration: 1, delay: 0.5 }}
-              className="w-24 h-1 bg-[#ff5722] mx-auto rounded-full"
-            />
+           
 
             <div className="space-y-3">
               <motion.p
@@ -116,12 +120,6 @@ const Home = () => {
                   className="block text-[#ff5722] mt-1 md:mt-2 relative"
                 >
                   Transportation Services
-                  <motion.span
-                    initial={{ width: 0 }}
-                    animate={{ width: isLoaded ? "100%" : 0 }}
-                    transition={{ duration: 1.2, delay: 1 }}
-                    className="absolute -bottom-1 left-0 h-1 bg-white/30 rounded-full"
-                  />
                 </motion.span>
               </motion.h1>
             </div>
@@ -146,6 +144,7 @@ const Home = () => {
                 whileHover={{ scale: 1.05, backgroundColor: '#ff7043' }}
                 whileTap={{ scale: 0.95 }}
                 className="px-6 py-2.5 bg-[#ff5722] text-white text-base font-medium rounded-full shadow-lg hover:shadow-[#ff5722]/30 transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden group"
+                onClick={() => navigate('/booking')}
               >
                 <span className="relative z-10">Book Your Vehicle</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-[#ff7043] to-[#ff5722] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -156,6 +155,7 @@ const Home = () => {
                 whileHover={{ scale: 1.05, borderColor: "rgba(255,255,255,0.5)" }}
                 whileTap={{ scale: 0.95 }}
                 className="px-6 py-2.5 bg-transparent text-white text-base font-medium rounded-full border-2 border-white/30 hover:bg-white/10 transition-all duration-300 transform hover:-translate-y-1 backdrop-blur-sm"
+                onClick={() => navigate('/chardham')}
               >
                 View Services
               </motion.button>
@@ -165,129 +165,84 @@ const Home = () => {
       </section>
 
       {/* Special Offers Section */}
-      <section className="py-12 bg-gradient-to-r from-amber-50 to-orange-50 relative overflow-hidden">
+      <section className="py-12 bg-gradient-to-r from-blue-50 to-orange-50 relative overflow-hidden">
         {/* Decorative elements */}
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-10">
-          <div className="absolute -top-24 -left-24 w-64 h-64 bg-amber-500 rounded-full"></div>
-          <div className="absolute top-32 -right-32 w-96 h-96 bg-orange-500 rounded-full"></div>
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-10 pointer-events-none">
+          <div className="absolute -top-24 -left-24 w-64 h-64 bg-[#1e40af] rounded-full blur-2xl"></div>
+          <div className="absolute top-32 -right-32 w-96 h-96 bg-[#ff5722] rounded-full blur-2xl"></div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-10">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="inline-block mb-2"
-            >
-              <div className="flex items-center justify-center space-x-2 bg-amber-500 text-white px-4 py-1 rounded-full">
-                <FaPercent className="text-sm" />
+            <div className="inline-block mb-2">
+              <div className="flex items-center justify-center space-x-2 bg-[#1e40af] text-white px-4 py-1 rounded-full shadow">
                 <span className="font-bold text-sm uppercase tracking-wider">Limited Time Offers</span>
               </div>
-            </motion.div>
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4"
-            >
-              Special Deals for Char Dham Yatra 2024
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-lg text-gray-600 max-w-3xl mx-auto"
-            >
-              Book your sacred journey today and take advantage of our exclusive promotional offers
-            </motion.p>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#1e40af] mb-4 drop-shadow">Special Deals for Char Dham Yatra 2024</h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">Book your sacred journey today and take advantage of our exclusive promotional offers</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
                 title: "Early Bird Discount",
                 subtitle: "20% OFF on bookings made 2 months in advance",
                 description: "Plan ahead and save on your transportation costs for Char Dham Yatra. Valid for all vehicle types.",
-                icon: <FaRegCalendarAlt className="w-6 h-6" />,
-                color: "amber",
                 cta: "Book Now",
-                expiry: "Expires in 7 days"
+                expiry: "Expires in 7 days",
+                color: "orange"
               },
               {
                 title: "Group Pilgrimage Special",
                 subtitle: "15% OFF for groups of 15+ pilgrims",
                 description: "The more devotees join, the more you save. Perfect for temple groups and spiritual communities.",
-                icon: <FaUsers className="w-6 h-6" />,
-                color: "orange",
                 cta: "Group Booking",
-                expiry: "Limited availability"
+                expiry: "Limited availability",
+                color: "orange"
               },
               {
                 title: "Complete Package Deal",
                 subtitle: "Free hotel stays in Rishikesh",
                 description: "Book complete Char Dham transportation package and get 2 nights' accommodation in Rishikesh free.",
-                icon: <FaMapMarkedAlt className="w-6 h-6" />,
-                color: "red",
-                cta: "View Details",
-                expiry: "Premium hotels only"
+                cta: "Book Now",
+                expiry: "Premium hotels only",
+                color: "orange"
               }
             ].map((offer, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 + (index * 0.1) }}
-                className="relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 group"
+                className="relative bg-white rounded-2xl shadow-xl border-t-8 border-[#1e40af] flex flex-col p-8 transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl"
               >
-                {/* Top decorative element */}
-                <div className={`absolute top-0 left-0 w-full h-1 bg-${offer.color}-500`}></div>
-                
-                {/* Content */}
-                <div className="p-8">
-                  <div className={`w-14 h-14 rounded-full bg-${offer.color}-100 flex items-center justify-center mb-6 text-${offer.color}-600 group-hover:bg-${offer.color}-500 group-hover:text-white transition-colors duration-300`}>
-                    {offer.icon}
-                  </div>
-                  
-                  <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-amber-600 transition-colors duration-300">{offer.title}</h3>
-                  <p className="text-amber-600 font-semibold mb-4">{offer.subtitle}</p>
-                  <p className="text-gray-600 mb-8">{offer.description}</p>
-                  
-                  <div className="flex items-center justify-between">
-                    <button className={`px-5 py-2 bg-${offer.color}-500 hover:bg-${offer.color}-600 text-white rounded-lg font-medium transition-colors duration-300 flex items-center space-x-1`}>
-                      <span>{offer.cta}</span>
-                      <svg className="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </button>
-                    <span className="text-sm text-gray-500">{offer.expiry}</span>
-                  </div>
-                </div>
-                
                 {/* Ribbon */}
-                <div className="absolute top-5 -right-12 w-40 transform rotate-45 bg-gradient-to-r from-amber-500 to-amber-600 text-white text-xs font-bold py-1 text-center shadow-lg">
+                <div className="absolute top-0 right-0 bg-gradient-to-l from-[#ff5722] to-[#1e40af] text-white text-xs font-bold py-1 px-4 rounded-bl-2xl shadow-lg z-10">
                   SPECIAL OFFER
                 </div>
-              </motion.div>
+                {/* Content */}
+                <h3 className="text-xl font-bold text-[#1e40af] mb-2">{offer.title}</h3>
+                <p className="font-semibold text-[#ff5722] mb-4">{offer.subtitle}</p>
+                <p className="text-gray-600 mb-8">{offer.description}</p>
+                <div className="flex items-center justify-between mt-auto">
+                  <button className="px-5 py-2 bg-[#ff5722] hover:bg-[#e64a19] text-white rounded-lg font-semibold shadow transition-colors duration-300 flex items-center space-x-1" onClick={() => navigate('/booking')}>
+                    <span>{offer.cta}</span>
+                    <svg className="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                  <span className="text-sm text-gray-400 font-medium">{offer.expiry}</span>
+                </div>
+              </div>
             ))}
           </div>
-          
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="text-center mt-12"
-          >
-            <Link 
-              to="/offers"
-              className="inline-flex items-center text-amber-600 hover:text-amber-700 font-semibold group"
-            >
+
+          <div className="text-center mt-12">
+            <a href="/offers" className="inline-flex items-center text-[#1e40af] hover:text-[#ff5722] font-semibold group transition-colors duration-300">
               View All Special Offers
               <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
-            </Link>
-          </motion.div>
+            </a>
+          </div>
         </div>
       </section>
       
@@ -320,7 +275,13 @@ const Home = () => {
                   "/cars/fortuner.jpg",
                   "/cars/ttttttttttttttttttt1.jpg"
                 ],
-                features: ["Toyota Fortuner", "Mahindra Scorpio", "Tata Safari", "MG Gloster", "Toyota Innova Crysta"],
+                features: [
+                  "Swift Dzire",
+                  "Ertiga",
+                  "Innova Crysta",
+                  "Fortuner",
+                  "Tata Nexon"
+                ],
                 price: "Starting from ₹15,000 per day"
               },
               {
@@ -350,12 +311,8 @@ const Home = () => {
                 features: [
                   "AC Deluxe Bus 21 Seater (2+1)",
                   "AC Deluxe Bus 27 Seater (2+2)",
-                  "AC Deluxe Bus 35 Seater (2+2)",
-                  "AC Deluxe Bus 41 Seater (2+2)",
-                  "AC Luxury Bus 25 Seater (2+1)",
-                  "AC Luxury Bus 31 Seater (2+2)",
-                  "AC Luxury Bus 41 Seater (2+2)",
-                  "AC Seater Sleeper Bus (2+2)"
+                  "AC Deluxe Bus 32 Seater (2+2)",
+                  "AC Deluxe Bus 40 Seater (2+2)"
                 ],
                 price: "Starting from ₹30,000 per day"
               }
@@ -371,8 +328,6 @@ const Home = () => {
                 <div className="relative h-48 overflow-hidden">
                   <Swiper
                     modules={[Navigation, Pagination, Autoplay]}
-                    navigation
-                    pagination={{ clickable: true }}
                     autoplay={{ delay: 3500, disableOnInteraction: false }}
                     loop
                     className="h-48"
@@ -416,8 +371,8 @@ const Home = () => {
                       {service.price}
                     </div>
                     <Link
-                      to={`/vehicles/${service.title.toLowerCase().includes('cars') ? 'cars' : service.title.toLowerCase().includes('vans') ? 'vans' : 'buses'}`}
-                      className={`w-full py-3 px-4 bg-${service.color}-600 text-white rounded-xl font-medium hover:bg-[#ff5722] transition duration-300 flex items-center justify-center group`}
+                      to={`/vehicles/${getVehicleType(service.title)}`}
+                      className="w-full py-3 px-4 bg-[#ff5722] text-white rounded-xl font-medium hover:bg-[#e64a19] transition duration-300 flex items-center justify-center group"
                     >
                       <span>View More</span>
                       <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -628,18 +583,12 @@ const Home = () => {
                   <div className="absolute bottom-6 left-6 z-20">
                     <h3 className="text-2xl font-bold text-white mb-2">Char Dham 2024</h3>
                     <p className="text-white/90">Season started on May 1st</p>
-                    <div className="flex items-center mt-4">
-                      <svg className="w-5 h-5 text-[#ff5722] mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
-                      <span className="text-white font-medium">Book early for best availability</span>
-                    </div>
                   </div>
                 </div>
               </div>
             </motion.div>
             
-            {/* Third destination - Gangotri */}
+            {/* Third destination - Char Dham */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -649,85 +598,64 @@ const Home = () => {
               <div className="md:flex">
                 {/* Content - Left */}
                 <div className="md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
-                  <h3 className="text-2xl md:text-3xl font-bold text-[#1e40af] mb-3">Gangotri</h3>
+                  <h3 className="text-2xl md:text-3xl font-bold text-[#1e40af] mb-3">Char Dham</h3>
                   <div className="h-1 w-16 bg-amber-500 mb-6 rounded-full"></div>
-                  
-                  <div className="flex items-center text-sm text-gray-600 mb-2">
-                    <svg className="w-4 h-4 text-amber-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                    <span>Uttarkashi District, Uttarakhand</span>
-                  </div>
-                  
-                  <div className="flex items-center text-sm text-gray-600 mb-4">
-                    <svg className="w-4 h-4 text-amber-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                    </svg>
-                    <span>Elevation: 3,100 meters</span>
-                  </div>
-                  
                   <p className="text-gray-600 mb-6 leading-relaxed">
-                    Gangotri is the origin of the River Ganges and seat of the goddess Ganga. The actual source of the river is at Gaumukh, the snout of the Gangotri Glacier, about 19 km further uphill from Gangotri.
+                    The Char Dham Yatra covers the four sacred shrines of Badrinath, Kedarnath, Gangotri, and Yamunotri in Uttarakhand. It is one of the most revered pilgrimage circuits in India, attracting devotees from all over the world.
                   </p>
-                  
                   <div className="grid grid-cols-2 gap-3 mb-6">
                     <div className="flex items-center text-gray-700">
                       <svg className="w-4 h-4 text-amber-500 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
-                      <span>Sacred river origin</span>
+                      <span>Complete spiritual circuit</span>
                     </div>
                     <div className="flex items-center text-gray-700">
                       <svg className="w-4 h-4 text-amber-500 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
-                      <span>Beautiful temple architecture</span>
+                      <span>Open May to October</span>
                     </div>
                     <div className="flex items-center text-gray-700">
                       <svg className="w-4 h-4 text-amber-500 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
-                      <span>Surrounded by pine forests</span>
+                      <span>Scenic Himalayan routes</span>
                     </div>
                     <div className="flex items-center text-gray-700">
                       <svg className="w-4 h-4 text-amber-500 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
-                      <span>Panoramic mountain views</span>
+                      <span>Rich cultural heritage</span>
                     </div>
                   </div>
-                  
                   <Link
-                    to="/gangotri"
+                    to="/chardham"
                     className="inline-flex items-center text-amber-600 font-medium hover:text-amber-700 transition duration-300 group"
                   >
-                    Explore Gangotri
+                    Explore Char Dham
                     <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>
                   </Link>
                 </div>
-                
                 {/* Image - Right */}
                 <div className="md:w-1/2 relative h-64 md:h-auto overflow-hidden">
                   <div className="absolute inset-0">
                     <img 
-                      src="/gangatri.jpg" 
-                      alt="Gangotri Temple"
+                      src="/public/yamunotri.jpg" 
+                      alt="Char Dham Yatra"
                       className="w-full h-full object-cover object-center"
                     />
                   </div>
                   <div className="absolute bottom-0 left-0 bg-gradient-to-r from-amber-600 to-amber-500 text-white py-2 px-4 rounded-tr-lg z-10">
-                    <span className="font-medium">Goddess Ganga</span>
+                    <span className="font-medium">Char Dham Circuit</span>
                   </div>
-                  {/* Gradient overlay for better text visibility */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
                 </div>
               </div>
             </motion.div>
-            
-            {/* Fourth destination - Yamunotri */}
+            {/* Fourth destination - Do Dham */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -737,80 +665,60 @@ const Home = () => {
               <div className="md:flex flex-row-reverse">
                 {/* Content - Right */}
                 <div className="md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
-                  <h3 className="text-2xl md:text-3xl font-bold text-[#1e40af] mb-3">Yamunotri</h3>
+                  <h3 className="text-2xl md:text-3xl font-bold text-[#1e40af] mb-3">Do Dham</h3>
                   <div className="h-1 w-16 bg-amber-500 mb-6 rounded-full"></div>
-                  
-                  <div className="flex items-center text-sm text-gray-600 mb-2">
-                    <svg className="w-4 h-4 text-amber-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                    <span>Uttarkashi District, Uttarakhand</span>
-                  </div>
-                  
-                  <div className="flex items-center text-sm text-gray-600 mb-4">
-                    <svg className="w-4 h-4 text-amber-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                    </svg>
-                    <span>Elevation: 3,293 meters</span>
-                  </div>
-                  
                   <p className="text-gray-600 mb-6 leading-relaxed">
-                    The source of the Yamuna River and the seat of the goddess Yamuna. The temple is situated close to the hot water springs and represents the starting point of the Char Dham Yatra.
+                    The Do Dham Yatra is a popular alternative to the full Char Dham circuit, covering any two of the four sacred shrines. It is ideal for those with limited time or seeking a shorter pilgrimage experience.
                   </p>
-                  
                   <div className="grid grid-cols-2 gap-3 mb-6">
                     <div className="flex items-center text-gray-700">
                       <svg className="w-4 h-4 text-amber-500 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
-                      <span>Natural hot springs</span>
+                      <span>Flexible route options</span>
                     </div>
                     <div className="flex items-center text-gray-700">
                       <svg className="w-4 h-4 text-amber-500 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
-                      <span>Surya Kund</span>
+                      <span>Shorter duration</span>
                     </div>
                     <div className="flex items-center text-gray-700">
                       <svg className="w-4 h-4 text-amber-500 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
-                      <span>Divya Shila worship</span>
+                      <span>Ideal for families</span>
                     </div>
                     <div className="flex items-center text-gray-700">
                       <svg className="w-4 h-4 text-amber-500 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
-                      <span>Challenging trek routes</span>
+                      <span>Spiritual fulfillment</span>
                     </div>
                   </div>
-                  
                   <Link
-                    to="/yamunotri"
+                    to="/dodham"
                     className="inline-flex items-center text-amber-600 font-medium hover:text-amber-700 transition duration-300 group"
                   >
-                    Explore Yamunotri
+                    Explore Do Dham
                     <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>
                   </Link>
                 </div>
-                
                 {/* Image - Left */}
                 <div className="md:w-1/2 relative h-64 md:h-auto overflow-hidden">
                   <div className="absolute inset-0">
                     <img 
-                      src="/Yamunotri.jpg" 
-                      alt="Yamunotri Temple"
-                      className="w-full h-full object-cover object-center"
+                      src="/public/gangatri.jpg"
+                      alt="Do Dham Yatra"
+                      className="w-full h-96 object-cover rounded-xl"
                     />
                   </div>
-                  <div className="absolute bottom-0 left-0 bg-gradient-to-r from-amber-600 to-amber-500 text-white py-2 px-4 rounded-tr-lg z-10">
-                    <span className="font-medium">Goddess Yamuna</span>
+                  <div className="absolute bottom-6 left-6 z-20">
+                    <h3 className="text-2xl font-bold text-white mb-2">Do Dham 2024</h3>
+                    <p className="text-white/90">Flexible options for your journey</p>
                   </div>
-                  {/* Gradient overlay for better text visibility */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
                 </div>
               </div>
             </motion.div>
@@ -1091,12 +999,6 @@ const Home = () => {
               <div className="absolute bottom-6 left-6 z-20">
                 <h3 className="text-2xl font-bold text-white mb-2">Char Dham 2024</h3>
                 <p className="text-white/90">Season started on May 1st</p>
-                <div className="flex items-center mt-4">
-                  <svg className="w-5 h-5 text-[#ff5722] mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                  <span className="text-white font-medium">Book early for best availability</span>
-                </div>
               </div>
             </motion.div>
           </div>

@@ -6,170 +6,208 @@ import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const CharDhamYatra = () => {
+  const navigate = useNavigate();
+
+  // Helper function to map service title to vehicle type
+  const getVehicleType = (title) => {
+    if (title.toLowerCase().includes('suv')) return 'cars';
+    if (title.toLowerCase().includes('traveller')) return 'vans';
+    if (title.toLowerCase().includes('bus')) return 'buses';
+    return 'buses'; // default
+  };
+
   return (
     <div className="bg-gray-50">
-      {/* Hero Section with Local Background Image */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 z-0">
+      {/* Hero Section with Image Background - Home Style */}
+      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
+        {/* Image Background with Overlay */}
+        <div className="absolute inset-0">
           <img 
-            src="/chardham/chardham-banner.jpg" 
-            alt="Char Dham Temples" 
+            src="/public/yamunotri.jpg" 
+            alt="Char Dham Yatra"
             className="w-full h-full object-cover"
           />
-          {/* Gradient overlay for better text visibility */}
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/80 to-purple-900/80"></div>
+          {/* Enhanced overlay with gradient */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80"></div>
+          {/* Animated Overlay Elements */}
+          <div className="absolute inset-0">
+            <div className="absolute w-full h-full bg-[#ff5722]/10 mix-blend-overlay"></div>
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: [0.1, 0.3, 0.1] }}
+              transition={{ duration: 6, repeat: Infinity }}
+              className="absolute inset-0 bg-gradient-to-r from-[#ff5722]/15 to-transparent"
+            />
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1.5 }}
+              className="absolute inset-0"
+              style={{
+                backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(255, 87, 34, 0.1) 0%, transparent 40%)',
+              }}
+            />
+          </div>
         </div>
-        <div className="container mx-auto px-4 py-24 md:py-36 relative z-10">
-          <motion.div 
+        {/* Content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center max-w-4xl mx-auto text-white"
+            transition={{ duration: 1 }}
+            className="space-y-4 md:space-y-6"
           >
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">Char Dham Yatra Transportation</h1>
-            <p className="text-xl md:text-2xl mb-8">Safe and comfortable journeys to the sacred temples of Badrinath, Kedarnath, Gangotri, and Yamunotri</p>
-            <motion.button 
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-amber-500 hover:bg-amber-600 text-gray-900 font-bold py-3 px-8 rounded-full text-lg transition duration-300 shadow-lg"
+            
+            <div className="space-y-3">
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="text-[#ff5722] text-base md:text-lg font-medium tracking-wide uppercase"
+              >
+                CHAR DHAM YATRA 2024
+              </motion.p>
+              <motion.h1 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                className="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight"
+              >
+                Begin Your Sacred Char Dham Journey
+                <motion.span 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.7 }}
+                  className="block text-[#ff5722] mt-1 md:mt-2 relative"
+                >
+                  Transportation & Pilgrimage Services
+                  
+                </motion.span>
+              </motion.h1>
+            </div>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.9 }}
+              className="text-base md:text-lg text-white/90 max-w-2xl mx-auto px-4 leading-relaxed"
             >
-              Book Your Journey Now
-            </motion.button>
+              Safe, reliable, and comfortable transportation for your Char Dham Yatra to Badrinath, Kedarnath, Gangotri, and Yamunotri.
+            </motion.p>
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.1 }}
+              className="flex flex-col sm:flex-row gap-3 justify-center mt-4 px-4"
+            >
+              <motion.button
+                whileHover={{ scale: 1.05, backgroundColor: '#ff7043' }}
+                whileTap={{ scale: 0.95 }}
+                className="px-6 py-2.5 bg-[#ff5722] text-white text-base font-medium rounded-full shadow-lg hover:shadow-[#ff5722]/30 transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden group"
+                onClick={() => navigate('/booking')}
+              >
+                <span className="relative z-10">Book Your Vehicle</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-[#ff7043] to-[#ff5722] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute top-0 right-0 w-20 h-10 bg-white/10 blur-xl transform rotate-45 translate-x-20 translate-y-0 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-1000"></div>
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.05, borderColor: "rgba(255,255,255,0.5)" }}
+                whileTap={{ scale: 0.95 }}
+                className="px-6 py-2.5 bg-transparent text-white text-base font-medium rounded-full border-2 border-white/30 hover:bg-white/10 transition-all duration-300 transform hover:-translate-y-1 backdrop-blur-sm"
+                onClick={() => navigate('/chardham')}
+              >
+                View Services
+              </motion.button>
+            </motion.div>
           </motion.div>
         </div>
       </section>
       
       {/* Special Offers Section */}
-      <section className="py-12 bg-gradient-to-r from-amber-50 to-orange-50 relative overflow-hidden">
+      <section className="py-12 bg-gradient-to-r from-blue-50 to-orange-50 relative overflow-hidden">
         {/* Decorative elements */}
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-10">
-          <div className="absolute -top-24 -left-24 w-64 h-64 bg-amber-500 rounded-full"></div>
-          <div className="absolute top-32 -right-32 w-96 h-96 bg-orange-500 rounded-full"></div>
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-10 pointer-events-none">
+          <div className="absolute -top-24 -left-24 w-64 h-64 bg-[#1e40af] rounded-full blur-2xl"></div>
+          <div className="absolute top-32 -right-32 w-96 h-96 bg-[#ff5722] rounded-full blur-2xl"></div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-10">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="inline-block mb-2"
-            >
-              <div className="flex items-center justify-center space-x-2 bg-amber-500 text-white px-4 py-1 rounded-full">
-                <FaPercent className="text-sm" />
+            <div className="inline-block mb-2">
+              <div className="flex items-center justify-center space-x-2 bg-[#1e40af] text-white px-4 py-1 rounded-full shadow">
                 <span className="font-bold text-sm uppercase tracking-wider">Limited Time Offers</span>
               </div>
-            </motion.div>
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4"
-            >
-              Special Deals for Char Dham Yatra 2024
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-lg text-gray-600 max-w-3xl mx-auto"
-            >
-              Book your sacred journey today and take advantage of our exclusive promotional offers
-            </motion.p>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#1e40af] mb-4 drop-shadow">Special Deals for Char Dham Yatra 2024</h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">Book your sacred journey today and take advantage of our exclusive promotional offers</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
                 title: "Early Bird Discount",
                 subtitle: "20% OFF on bookings made 2 months in advance",
                 description: "Plan ahead and save on your transportation costs for Char Dham Yatra. Valid for all vehicle types.",
-                icon: <FaRegCalendarAlt className="w-6 h-6" />,
-                color: "amber",
                 cta: "Book Now",
-                expiry: "Expires in 7 days"
+                expiry: "Expires in 7 days",
+                color: "orange"
               },
               {
                 title: "Group Pilgrimage Special",
                 subtitle: "15% OFF for groups of 15+ pilgrims",
                 description: "The more devotees join, the more you save. Perfect for temple groups and spiritual communities.",
-                icon: <FaUsers className="w-6 h-6" />,
-                color: "orange",
                 cta: "Group Booking",
-                expiry: "Limited availability"
+                expiry: "Limited availability",
+                color: "orange"
               },
               {
                 title: "Complete Package Deal",
                 subtitle: "Free hotel stays in Rishikesh",
                 description: "Book complete Char Dham transportation package and get 2 nights' accommodation in Rishikesh free.",
-                icon: <FaMapMarkedAlt className="w-6 h-6" />,
-                color: "red",
-                cta: "View Details",
-                expiry: "Premium hotels only"
+                cta: "Book Now",
+                expiry: "Premium hotels only",
+                color: "orange"
               }
             ].map((offer, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 + (index * 0.1) }}
-                className="relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 group"
+                className="relative bg-white rounded-2xl shadow-xl border-t-8 border-[#1e40af] flex flex-col p-8 transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl"
               >
-                {/* Top decorative element */}
-                <div className={`absolute top-0 left-0 w-full h-1 bg-${offer.color}-500`}></div>
-                
-                {/* Content */}
-                <div className="p-8">
-                  <div className={`w-14 h-14 rounded-full bg-${offer.color}-100 flex items-center justify-center mb-6 text-${offer.color}-600 group-hover:bg-${offer.color}-500 group-hover:text-white transition-colors duration-300`}>
-                    {offer.icon}
-                  </div>
-                  
-                  <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-amber-600 transition-colors duration-300">{offer.title}</h3>
-                  <p className="text-amber-600 font-semibold mb-4">{offer.subtitle}</p>
-                  <p className="text-gray-600 mb-8">{offer.description}</p>
-                  
-                  <div className="flex items-center justify-between">
-                    <button className={`px-5 py-2 bg-${offer.color}-500 hover:bg-${offer.color}-600 text-white rounded-lg font-medium transition-colors duration-300 flex items-center space-x-1`}>
-                      <span>{offer.cta}</span>
-                      <svg className="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </button>
-                    <span className="text-sm text-gray-500">{offer.expiry}</span>
-                  </div>
-                </div>
-                
                 {/* Ribbon */}
-                <div className="absolute top-5 -right-12 w-40 transform rotate-45 bg-gradient-to-r from-amber-500 to-amber-600 text-white text-xs font-bold py-1 text-center shadow-lg">
+                <div className="absolute top-0 right-0 bg-gradient-to-l from-[#ff5722] to-[#1e40af] text-white text-xs font-bold py-1 px-4 rounded-bl-2xl shadow-lg z-10">
                   SPECIAL OFFER
                 </div>
-              </motion.div>
+                {/* Content */}
+                <h3 className="text-xl font-bold text-[#1e40af] mb-2">{offer.title}</h3>
+                <p className="font-semibold text-[#ff5722] mb-4">{offer.subtitle}</p>
+                <p className="text-gray-600 mb-8">{offer.description}</p>
+                <div className="flex items-center justify-between mt-auto">
+                  <button className="px-5 py-2 bg-[#ff5722] hover:bg-[#e64a19] text-white rounded-lg font-semibold shadow transition-colors duration-300 flex items-center space-x-1" onClick={() => navigate('/booking')}>
+                    <span>{offer.cta}</span>
+                    <svg className="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                  <span className="text-sm text-gray-400 font-medium">{offer.expiry}</span>
+                </div>
+              </div>
             ))}
           </div>
-          
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="text-center mt-12"
-          >
-            <Link 
-              to="/offers"
-              className="inline-flex items-center text-amber-600 hover:text-amber-700 font-semibold group"
-            >
+
+          <div className="text-center mt-12">
+            <a href="/offers" className="inline-flex items-center text-[#1e40af] hover:text-[#ff5722] font-semibold group transition-colors duration-300">
               View All Special Offers
               <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
-            </Link>
-          </motion.div>
+            </a>
+          </div>
         </div>
       </section>
       
-      {/* Transportation Options Section for Char Dham Yatra */}
+      {/* Our Services Section - Enhanced */}
       <section className="py-20 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -182,27 +220,35 @@ const CharDhamYatra = () => {
               Transportation Options
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              For Char Dham Yatra, we provide a range of well-maintained vans, buses, and cars to suit every group size and comfort level.
+              For Char Dham and Do Dham Yatra, we provide a range of well-maintained vans, buses, and cars to suit every group size and comfort level.
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {[
               {
-                title: "Char Dham Cars",
-                description: "Our cars are ideal for Char Dham Yatra, offering comfort and flexibility for small groups and families.",
+                title: "Premium SUVs",
+                description: "Our cars are ideal for Char Dham and Do Dham Yatra, offering comfort and flexibility for small groups and families.",
+                icon: <FaCar className="w-12 h-12" />,
                 color: "amber",
                 images: [
                   "/cars/carsswift.jpg",
                   "/cars/fortuner.jpg",
                   "/cars/ttttttttttttttttttt1.jpg"
                 ],
-                features: ["Toyota Fortuner", "Mahindra Scorpio", "Tata Safari", "MG Gloster", "Toyota Innova Crysta"],
+                features: [
+                  "Swift Dzire",
+                  "Ertiga",
+                  "Innova Crysta",
+                  "Fortuner",
+                  "Tata Nexon"
+                ],
                 price: "Starting from ₹15,000 per day"
               },
               {
-                title: "Char Dham Vans",
-                description: "Perfect for Char Dham Yatra, our vans provide ample space and comfort for medium-sized groups.",
+                title: "Tempo Travellers",
+                description: "Perfect for Char Dham and Do Dham Yatra, our vans provide ample space and comfort for medium-sized groups.",
+                icon: <FaShuttleVan className="w-12 h-12" />,
                 color: "blue",
                 images: [
                   "/vans/tttt7.jpg",
@@ -212,8 +258,9 @@ const CharDhamYatra = () => {
                 price: "Starting from ₹20,000 per day"
               },
               {
-                title: "Char Dham Buses",
-                description: "For large groups on Char Dham Yatra, our luxury buses ensure a safe and comfortable pilgrimage.",
+                title: "Luxury Buses",
+                description: "For large groups on Char Dham and Do Dham Yatra, our luxury buses ensure a safe and comfortable pilgrimage.",
+                icon: <FaBus className="w-12 h-12" />,
                 color: "indigo",
                 images: [
                   "/buses/tant_bus_-2.jpg",
@@ -225,12 +272,8 @@ const CharDhamYatra = () => {
                 features: [
                   "AC Deluxe Bus 21 Seater (2+1)",
                   "AC Deluxe Bus 27 Seater (2+2)",
-                  "AC Deluxe Bus 35 Seater (2+2)",
-                  "AC Deluxe Bus 41 Seater (2+2)",
-                  "AC Luxury Bus 25 Seater (2+1)",
-                  "AC Luxury Bus 31 Seater (2+2)",
-                  "AC Luxury Bus 41 Seater (2+2)",
-                  "AC Seater Sleeper Bus (2+2)"
+                  "AC Deluxe Bus 32 Seater (2+2)",
+                  "AC Deluxe Bus 40 Seater (2+2)"
                 ],
                 price: "Starting from ₹30,000 per day"
               }
@@ -246,8 +289,6 @@ const CharDhamYatra = () => {
                 <div className="relative h-48 overflow-hidden">
                   <Swiper
                     modules={[Navigation, Pagination, Autoplay]}
-                    navigation
-                    pagination={{ clickable: true }}
                     autoplay={{ delay: 3500, disableOnInteraction: false }}
                     loop
                     className="h-48"
@@ -291,8 +332,8 @@ const CharDhamYatra = () => {
                       {service.price}
                     </div>
                     <Link
-                      to={`/vehicles/${service.title.toLowerCase().includes('cars') ? 'cars' : service.title.toLowerCase().includes('vans') ? 'vans' : 'buses'}`}
-                      className={`w-full py-3 px-4 bg-${service.color}-600 text-white rounded-xl font-medium hover:bg-[#ff5722] transition duration-300 flex items-center justify-center group`}
+                      to={`/vehicles/${getVehicleType(service.title)}`}
+                      className="w-full py-3 px-4 bg-[#ff5722] text-white rounded-xl font-medium hover:bg-[#e64a19] transition duration-300 flex items-center justify-center group"
                     >
                       <span>View More</span>
                       <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -323,7 +364,7 @@ const CharDhamYatra = () => {
             <div className="bg-white rounded-xl overflow-hidden shadow-md transition-transform duration-300 hover:shadow-xl hover:-translate-y-2">
               <div className="h-48 overflow-hidden">
                 <img 
-                  src="https://images.unsplash.com/photo-1617526738882-1ea945ce3e56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" 
+                  src="/public/badrinath.jpg" 
                   alt="Badrinath Temple" 
                   className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                 />
@@ -348,7 +389,7 @@ const CharDhamYatra = () => {
             <div className="bg-white rounded-xl overflow-hidden shadow-md transition-transform duration-300 hover:shadow-xl hover:-translate-y-2">
               <div className="h-48 overflow-hidden">
                 <img 
-                  src="https://images.unsplash.com/photo-1591777331097-fcf03fb7078f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" 
+                  src="/public/kedarnath.jpg" 
                   alt="Kedarnath Temple" 
                   className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                 />
@@ -373,7 +414,7 @@ const CharDhamYatra = () => {
             <div className="bg-white rounded-xl overflow-hidden shadow-md transition-transform duration-300 hover:shadow-xl hover:-translate-y-2">
               <div className="h-48 overflow-hidden">
                 <img 
-                  src="https://images.unsplash.com/photo-1609766856923-a1c9ac2bd13c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                  src="/public/gangatri.jpg" 
                   alt="Gangotri Temple" 
                   className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                 />
@@ -422,146 +463,7 @@ const CharDhamYatra = () => {
         </div>
       </section>
       
-      {/* Travel Planning Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Plan Your Char Dham Journey</h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Whether you're traveling in a large group or as a family, we provide customized transportation
-              solutions to make your Char Dham pilgrimage comfortable and memorable.
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Package 1 */}
-            <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl p-6 shadow-md border border-gray-100">
-              <div className="mb-4">
-                <span className="inline-block py-1 px-3 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Most Popular</span>
-              </div>
-              <h3 className="text-2xl font-bold mb-2">10-Day Complete Tour</h3>
-              <p className="text-gray-600 mb-6">Cover all four Dhams with comfortable transportation and accommodations.</p>
-              
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-start">
-                  <span className="text-green-500 mr-2">✓</span>
-                  <span>Visit all four Char Dham temples</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-green-500 mr-2">✓</span>
-                  <span>Transportation throughout the journey</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-green-500 mr-2">✓</span>
-                  <span>Experienced driver and guide</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-green-500 mr-2">✓</span>
-                  <span>Assistance with permits and arrangements</span>
-                </li>
-              </ul>
-              
-              <div className="flex items-center justify-between mb-6">
-                <div>
-                  <p className="text-gray-500 text-sm">Starting from</p>
-                  <p className="text-2xl font-bold">₹25,000 <span className="text-sm font-normal">per person</span></p>
-                </div>
-                <div>
-                  <span className="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">10 Days</span>
-                </div>
-              </div>
-              
-              <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg transition duration-300">
-                Inquire Now
-              </button>
-            </div>
-            
-            {/* Package 2 */}
-            <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-6 shadow-md border border-gray-100">
-              <div className="mb-4">
-                <span className="inline-block py-1 px-3 bg-amber-100 text-amber-800 rounded-full text-sm font-medium">Family Special</span>
-              </div>
-              <h3 className="text-2xl font-bold mb-2">7-Day Selected Dhams</h3>
-              <p className="text-gray-600 mb-6">Visit Badrinath and Kedarnath with premium transportation services.</p>
-              
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-start">
-                  <span className="text-green-500 mr-2">✓</span>
-                  <span>Focus on Badrinath and Kedarnath</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-green-500 mr-2">✓</span>
-                  <span>Premium vehicle with experienced driver</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-green-500 mr-2">✓</span>
-                  <span>Assistance with accommodations</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-green-500 mr-2">✓</span>
-                  <span>Helicopter booking assistance (optional)</span>
-                </li>
-              </ul>
-              
-              <div className="flex items-center justify-between mb-6">
-                <div>
-                  <p className="text-gray-500 text-sm">Starting from</p>
-                  <p className="text-2xl font-bold">₹18,000 <span className="text-sm font-normal">per person</span></p>
-                </div>
-                <div>
-                  <span className="bg-amber-100 text-amber-800 text-xs font-medium px-2.5 py-0.5 rounded-full">7 Days</span>
-                </div>
-              </div>
-              
-              <button className="w-full bg-amber-600 hover:bg-amber-700 text-white py-3 rounded-lg transition duration-300">
-                Inquire Now
-              </button>
-            </div>
-            
-            {/* Package 3 */}
-            <div className="bg-gradient-to-br from-green-50 to-teal-50 rounded-xl p-6 shadow-md border border-gray-100">
-              <div className="mb-4">
-                <span className="inline-block py-1 px-3 bg-green-100 text-green-800 rounded-full text-sm font-medium">Customizable</span>
-              </div>
-              <h3 className="text-2xl font-bold mb-2">Custom Transportation</h3>
-              <p className="text-gray-600 mb-6">Vehicle rental for your self-planned Char Dham pilgrimage journey.</p>
-              
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-start">
-                  <span className="text-green-500 mr-2">✓</span>
-                  <span>Choice of vehicle based on group size</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-green-500 mr-2">✓</span>
-                  <span>Experienced mountain driver</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-green-500 mr-2">✓</span>
-                  <span>Flexible itinerary based on your needs</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-green-500 mr-2">✓</span>
-                  <span>24/7 support during the journey</span>
-                </li>
-              </ul>
-              
-              <div className="flex items-center justify-between mb-6">
-                <div>
-                  <p className="text-gray-500 text-sm">Starting from</p>
-                  <p className="text-2xl font-bold">₹3,500 <span className="text-sm font-normal">per day</span></p>
-                </div>
-                <div>
-                  <span className="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Flexible</span>
-                </div>
-              </div>
-              
-              <button className="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg transition duration-300">
-                Inquire Now
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
+
       
       {/* FAQs Section */}
       <section className="py-16 bg-gray-50">

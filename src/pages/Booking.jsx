@@ -59,10 +59,33 @@ function Booking() {
   const nextStep = () => setStep((s) => s + 1);
   const prevStep = () => setStep((s) => s - 1);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Submit logic here
-    setSubmitted(true);
+    // Prepare data for backend
+    const bookingData = {
+      name: form.name,
+      email: form.email,
+      phone: form.phone,
+      vehicle: form.vehicle,
+      date: form.travelDateTime,
+      passengers: 1, // You can update this if you have a field for passengers
+      message: form.message,
+      // Optionally add pickup/dropoff/kyc if you want to store them
+    };
+    try {
+      const response = await fetch('http://localhost:5000/api/bookings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(bookingData),
+      });
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        alert('Failed to submit booking. Please try again.');
+      }
+    } catch (error) {
+      alert('Error submitting booking. Please try again.');
+    }
   };
 
   if (submitted) {
@@ -150,7 +173,7 @@ function Booking() {
                 </div>
               ))}
             </div>
-            <div>
+            <div>     
               <label className="block font-medium mb-1">Drop-off Date & Time</label>
               <input type="datetime-local" name="dropoffDateTime" value={form.dropoffDateTime} onChange={handleChange} required className="w-full border rounded px-4 py-3" placeholder="Select date and time" />
             </div>

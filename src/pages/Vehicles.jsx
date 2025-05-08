@@ -35,25 +35,7 @@ const Vehicles = () => {
           price: "₹15,000 per day",
           description: "The Toyota Fortuner is a premium SUV perfect for mountain travel with its powerful engine and high ground clearance."
         },
-        {
-          name: "Mahindra Scorpio",
-          images: ["/cars/scorpio.jpg"],
-          features: [
-            "7 Seater",
-            "Powerful Engine",
-            "High Ground Clearance",
-            "Comfortable Seating",
-            "Luggage Space"
-          ],
-          amenities: [
-            "AC",
-            "Music System",
-            "Comfortable Seats",
-            "Luggage Carrier"
-          ],
-          price: "₹12,000 per day",
-          description: "The Mahindra Scorpio offers excellent value with its robust build and comfortable interior."
-        },
+       
         {
           name: "Toyota Innova Crysta",
           images: ["/cars/innova.jpg"],
@@ -74,44 +56,6 @@ const Vehicles = () => {
           description: "The Toyota Innova Crysta is known for its premium comfort and reliability."
         },
         {
-          name: "Tata Safari",
-          images: ["/cars/tatasafari.jpg"],
-          features: [
-            "7 Seater",
-            "Diesel Engine",
-            "Spacious Interior",
-            "Modern Safety Features",
-            "Luggage Space"
-          ],
-          amenities: [
-            "AC",
-            "Music System",
-            "Comfortable Seats",
-            "Luggage Carrier"
-          ],
-          price: "₹13,000 per day",
-          description: "Tata Safari is a robust SUV with a spacious interior, ideal for family trips in the mountains."
-        },
-        {
-          name: "MG Gloster",
-          images: ["/cars/mg-gloster.jpg"],
-          features: [
-            "7 Seater",
-            "Luxury Interior",
-            "Advanced Safety",
-            "Powerful Turbo Engine",
-            "Luggage Space"
-          ],
-          amenities: [
-            "AC",
-            "Music System",
-            "Leather Seats",
-            "Luggage Carrier"
-          ],
-          price: "₹16,000 per day",
-          description: "MG Gloster offers a luxury ride with advanced features and comfort for long journeys."
-        },
-        {
           name: "Swift Dzire",
           images: ["/cars/carsswift.jpg"],
           features: [
@@ -130,24 +74,6 @@ const Vehicles = () => {
           description: "A compact and fuel-efficient sedan, perfect for couples or small families."
         },
         {
-          name: "Tata Sumo",
-          images: ["/cars/ttttttttttttttttttt1.jpg"],
-          features: [
-            "7 Seater",
-            "Rugged Build",
-            "High Ground Clearance",
-            "Spacious Interior",
-            "Luggage Space"
-          ],
-          amenities: [
-            "AC",
-            "Music System",
-            "Comfortable Seats"
-          ],
-          price: "₹10,000 per day",
-          description: "A rugged and reliable SUV, ideal for hilly terrain and group travel."
-        },
-        {
           name: "Maruti Ertiga",
           images: ["/cars/carsswift.jpg"],
           features: [
@@ -164,42 +90,6 @@ const Vehicles = () => {
           ],
           price: "₹11,000 per day",
           description: "A popular MPV for families and small groups, known for comfort and efficiency."
-        },
-        {
-          name: "Toyota Etios",
-          images: ["/cars/carsswift.jpg"],
-          features: [
-            "4 Seater",
-            "Sedan",
-            "Spacious Boot",
-            "Smooth Ride",
-            "Fuel Efficient"
-          ],
-          amenities: [
-            "AC",
-            "Music System",
-            "Comfortable Seats"
-          ],
-          price: "₹9,000 per day",
-          description: "A reliable sedan, perfect for couples or small families on pilgrimage."
-        },
-        {
-          name: "Mahindra Bolero",
-          images: ["/cars/ttttttttttttttttttt1.jpg"],
-          features: [
-            "7 Seater",
-            "Rugged Build",
-            "High Ground Clearance",
-            "Spacious Interior",
-            "Luggage Space"
-          ],
-          amenities: [
-            "AC",
-            "Music System",
-            "Comfortable Seats"
-          ],
-          price: "₹10,500 per day",
-          description: "A tough and reliable SUV, ideal for hilly terrain and group travel."
         }
       ]
     },
@@ -396,26 +286,6 @@ const Vehicles = () => {
           description: "Premium comfort with 2+1 seating arrangement for maximum space."
         },
         {
-          name: "AC Deluxe Bus 35 Seater",
-          images: ["/buses/tt3.jpg"],
-          features: [
-            "35 Seater (2+2)",
-            "Spacious Interior",
-            "Luggage Space",
-            "Comfortable Seating",
-            "Good Visibility"
-          ],
-          amenities: [
-            "AC",
-            "Music System",
-            "Comfortable Seats",
-            "Luggage Carrier",
-            "Reading Lights"
-          ],
-          price: "₹35,000 per day",
-          description: "Perfect for large groups with comfortable 2+2 seating arrangement."
-        },
-        {
           name: "AC Deluxe Bus 27 Seater",
           images: ["/buses/tttttt6.jpg"],
           features: [
@@ -436,129 +306,10 @@ const Vehicles = () => {
           description: "A great option for mid-sized groups, balancing comfort and capacity."
         },
         {
-          name: "AC Deluxe Bus 41 Seater",
-          images: ["/buses/ttttttttttt4.jpg"],
+          name: "Tourist Bus 32 Seater",
+          images: ["/buses/tant_bus_-2.jpg"],
           features: [
-            "41 Seater (2+2)",
-            "Spacious Interior",
-            "Luggage Space",
-            "Comfortable Seating",
-            "Good Visibility"
-          ],
-          amenities: [
-            "AC",
-            "Music System",
-            "Comfortable Seats",
-            "Luggage Carrier",
-            "Reading Lights"
-          ],
-          price: "₹42,000 per day",
-          description: "Ideal for very large groups, this bus offers maximum capacity and comfort."
-        },
-        {
-          name: "AC Seater Sleeper Bus (2+2)",
-          images: ["/buses/ttttttttttttttttttt1.jpg"],
-          features: [
-            "Seater + Sleeper",
-            "41 Seater (2+2)",
-            "Reclining Seats",
-            "Sleeper Berths",
-            "Onboard Washroom"
-          ],
-          amenities: [
-            "AC",
-            "Music System",
-            "Comfortable Seats",
-            "Luggage Carrier",
-            "Reading Lights",
-            "Onboard Washroom"
-          ],
-          price: "₹45,000 per day",
-          description: "Seater-sleeper configuration for overnight journeys and extra comfort."
-        },
-        {
-          name: "AC Luxury Bus 25 Seater (2+1)",
-          images: ["/buses/luxury25.jpg"],
-          features: [
-            "25 Seater (2+1)",
-            "Luxury Interior",
-            "Reclining Seats",
-            "Luggage Space",
-            "Onboard Entertainment"
-          ],
-          amenities: [
-            "AC",
-            "Music System",
-            "LED TV",
-            "Comfortable Seats",
-            "Luggage Carrier"
-          ],
-          price: "₹34,000 per day",
-          description: "A luxury option for mid-sized groups, with entertainment and comfort."
-        },
-        {
-          name: "AC Luxury Bus 31 Seater (2+2)",
-          images: ["/buses/luxury31.jpg"],
-          features: [
-            "31 Seater (2+2)",
-            "Luxury Interior",
-            "Reclining Seats",
-            "Luggage Space",
-            "Onboard Entertainment"
-          ],
-          amenities: [
-            "AC",
-            "Music System",
-            "LED TV",
-            "Comfortable Seats",
-            "Luggage Carrier"
-          ],
-          price: "₹36,000 per day",
-          description: "A premium bus for larger groups, with luxury seating and entertainment."
-        },
-        {
-          name: "Mini Bus 20 Seater",
-          images: ["/buses/tt3.jpg"],
-          features: [
-            "20 Seater (2+2)",
-            "Compact Size",
-            "Ideal for Small Groups",
-            "Comfortable Seating",
-            "Luggage Space"
-          ],
-          amenities: [
-            "AC",
-            "Music System",
-            "Comfortable Seats",
-            "Luggage Carrier"
-          ],
-          price: "₹28,000 per day",
-          description: "A great option for small groups who want the comfort of a bus in a more compact size."
-        },
-        {
-          name: "Standard Bus 30 Seater",
-          images: ["/buses/ttttt6.jpg"],
-          features: [
-            "30 Seater (2+2)",
-            "Spacious Interior",
-            "Reclining Seats",
-            "Luggage Space",
-            "Good Visibility"
-          ],
-          amenities: [
-            "AC",
-            "Music System",
-            "Comfortable Seats",
-            "Luggage Carrier"
-          ],
-          price: "₹31,000 per day",
-          description: "A reliable and comfortable bus for mid-sized groups, perfect for long journeys."
-        },
-        {
-          name: "Tourist Bus 35 Seater",
-          images: ["/buses/tttttttttttttttt1.jpg"],
-          features: [
-            "35 Seater (2+2)",
+            "32 Seater (2+2)",
             "Tourist Class",
             "Reclining Seats",
             "Luggage Space",
@@ -575,7 +326,7 @@ const Vehicles = () => {
           description: "Tourist class bus with entertainment and comfort for group travel."
         },
         {
-          name: "Executive Bus 40 Seater",
+          name: "AC Deluxe Bus 40 Seater",
           images: ["/buses/ttttttttttt4.jpg"],
           features: [
             "40 Seater (2+2)",
@@ -706,29 +457,7 @@ const Vehicles = () => {
         </div>
       </section>
 
-      {/* Call to Action */}
-      <section className="py-16 bg-gradient-to-r from-[#1e40af] to-[#0f2d6e] text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-6">Ready to Book Your Vehicle?</h2>
-          <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto">
-            Contact us now to check availability and get the best rates for your Char Dham Yatra
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link
-              to="/contact"
-              className="px-8 py-4 bg-[#ff5722] text-white font-bold rounded-full hover:bg-[#e64a19] transition duration-300"
-            >
-              Contact Us
-            </Link>
-            <Link
-              to="/booking"
-              className="px-8 py-4 bg-transparent text-white font-bold rounded-full border-2 border-white/30 hover:border-white/70 hover:bg-white/10 transition duration-300"
-            >
-              Book Now
-            </Link>
-          </div>
-        </div>
-      </section>
+
     </div>
   );
 };

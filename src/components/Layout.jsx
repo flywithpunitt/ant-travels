@@ -47,10 +47,10 @@ const Layout = ({ children }) => {
   ];
 
   const topNavLinks = [
-    { name: 'Offers', path: '/offers', icon: <FaGift />, badge: 10 },
-    { name: 'Live Tracking', path: '/tracking', icon: <FaRoute /> },
-    { name: 'FAQ', path: '/faq', icon: <FaQuestion /> },
-    { name: 'Support', path: '/support', icon: <FaHeadset /> },
+    { name: 'Offers', path: '/offers', icon: <FaGift style={{ color: '#ff5722' }} />, badge: 10 },
+    { name: 'Live Tracking', path: '/tracking', icon: <FaRoute style={{ color: '#ff5722' }} /> },
+    { name: 'FAQ', path: '/faq', icon: <FaQuestion style={{ color: '#ff5722' }} /> },
+    { name: 'Support', path: '/support', icon: <FaHeadset style={{ color: '#ff5722' }} /> },
   ];
 
   return (
@@ -81,7 +81,7 @@ const Layout = ({ children }) => {
                       onClick={() => setIsMobileTopMenuOpen(!isMobileTopMenuOpen)}
                       className="text-gray-600 p-1"
                     >
-                      {isMobileTopMenuOpen ? <FaTimes /> : <FaBars />}
+                      {isMobileTopMenuOpen ? <FaTimes style={{ color: '#ff5722' }} /> : <FaBars style={{ color: '#ff5722' }} />}
                     </button>
                   </div>
                 </div>
@@ -221,9 +221,9 @@ const Layout = ({ children }) => {
                   aria-label="Toggle navigation menu"
                 >
                   {isMobileMenuOpen ? (
-                    <FaTimes className="w-6 h-6" />
+                    <FaTimes className="w-6 h-6" style={{ color: '#ff5722' }} />
                   ) : (
-                    <FaBars className="w-6 h-6" />
+                    <FaBars className="w-6 h-6" style={{ color: '#ff5722' }} />
                   )}
                 </motion.button>
               </div>
@@ -307,60 +307,60 @@ const Layout = ({ children }) => {
       </main>
 
       {/* Enhanced Footer */}
-      <footer className="bg-gradient-to-br from-[#1e326f] to-[#16213e] text-white border-t-4 border-amber-500 mt-12">
+      <footer className="bg-white text-[#1e326f] border-t-4 border-amber-500">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-10 items-start">
           {/* Logo & About */}
           <div className="flex flex-col items-center md:items-start gap-3 mb-8 md:mb-0 text-center md:text-left">
             <Link to="/">
-              <img src="/anttourlogo.png" alt="ANT Travels" className="h-14 w-auto object-contain bg-white p-1 rounded-lg shadow-md mx-auto md:mx-0" />
+              <img src="/anttourlogo.png" alt="ANT Travels" className="h-14 w-auto object-contain bg-[#ffffff] p-1 rounded-lg shadow-md mx-auto md:mx-0" />
             </Link>
-            <span className="text-white/80 text-sm max-w-xs">We make travel joyful.<br />One of the oldest transport service providers in Delhi/NCR since 2003.</span>
+            <span className="text-[#1e326f]/80 text-sm max-w-xs">We make travel joyful.<br />One of the oldest transport service providers in Delhi/NCR since 2003.</span>
             <div className="flex gap-3 mt-2 justify-center md:justify-start">
-              <a href="#" className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-amber-500 flex items-center justify-center hover:bg-amber-600 transition"><FaFacebookF className="text-white" size={18} /></a>
-              <a href="#" className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-amber-500 flex items-center justify-center hover:bg-amber-600 transition"><FaInstagram className="text-white" size={18} /></a>
+              <a href="#" className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-amber-500 flex items-center justify-center hover:bg-amber-600 transition"><FaFacebookF className="text-[#1e326f]" size={18} /></a>
+              <a href="#" className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-amber-500 flex items-center justify-center hover:bg-amber-600 transition"><FaInstagram className="text-[#1e326f]" size={18} /></a>
             </div>
           </div>
           {/* Links */}
           <div className="flex flex-col sm:flex-row justify-center gap-6 md:gap-10 w-full mb-8 md:mb-0 text-center md:text-left">
             <div>
-              <h4 className="text-base font-semibold mb-2 text-amber-400 tracking-wide">Our Service</h4>
+              <h4 className="text-base font-semibold mb-2 text-amber-500 tracking-wide">Our Service</h4>
               <ul className="space-y-1 text-sm">
-                <li><Link to="/" className="hover:text-amber-400 transition">Home</Link></li>
-                <li><Link to="/chardham" className="hover:text-amber-400 transition">Char Dham</Link></li>
-                <li><Link to="/dodham" className="hover:text-amber-400 transition">Do Dham</Link></li>
-                <li><Link to="/badrinath" className="hover:text-amber-400 transition">Badrinath</Link></li>
-                <li><Link to="/kedarnath" className="hover:text-amber-400 transition">Kedarnath</Link></li>
-                <li><Link to="/booking" className="hover:text-amber-400 transition">Book Now</Link></li>
-                <li><Link to="/manage-booking" className="hover:text-amber-400 transition">Manage Booking</Link></li>
+                <li><Link to="/" className="hover:text-amber-500 transition">Home</Link></li>
+                <li><Link to="/chardham" className="hover:text-amber-500 transition">Char Dham</Link></li>
+                <li><Link to="/dodham" className="hover:text-amber-500 transition">Do Dham</Link></li>
+                <li><Link to="/badrinath" className="hover:text-amber-500 transition">Badrinath</Link></li>
+                <li><Link to="/kedarnath" className="hover:text-amber-500 transition">Kedarnath</Link></li>
+                <li><Link to="/booking" className="hover:text-amber-500 transition">Book Now</Link></li>
+                <li><Link to="/manage-booking" className="hover:text-amber-500 transition">Manage Booking</Link></li>
               </ul>
             </div>
             <div>
-              <h4 className="text-base font-semibold mb-2 text-amber-400 tracking-wide">Company</h4>
+              <h4 className="text-base font-semibold mb-2 text-amber-500 tracking-wide">Company</h4>
               <ul className="space-y-1 text-sm">
-                <li><Link to="/about" className="hover:text-amber-400 transition">About Us</Link></li>
-                <li><Link to="/contact" className="hover:text-amber-400 transition">Contact Us</Link></li>
-                <li><Link to="/privacy" className="hover:text-amber-400 transition">Privacy Policy</Link></li>
+                <li><Link to="/about" className="hover:text-amber-500 transition">About Us</Link></li>
+                <li><Link to="/contact" className="hover:text-amber-500 transition">Contact Us</Link></li>
+                <li><Link to="/privacy" className="hover:text-amber-500 transition">Privacy Policy</Link></li>
               </ul>
             </div>
           </div>
           {/* Contact */}
           <div className="flex flex-col items-center md:items-start gap-4 text-center md:text-left">
-            <h4 className="text-base font-semibold mb-2 text-amber-400 tracking-wide">Contact</h4>
+            <h4 className="text-base font-semibold mb-2 text-amber-500 tracking-wide">Contact</h4>
             <div className="flex items-center gap-2 md:gap-3 text-sm justify-center md:justify-start">
-              <span className="flex-shrink-0 flex items-center justify-center w-9 h-9 md:w-10 md:h-10 rounded-full bg-amber-500"><FaMapMarkerAlt className="text-white text-base md:text-xl" /></span>
-              <span className="text-white/90 text-left">B-128, Transport Nagar, Sector-69, Noida, 201301</span>
+              <span className="flex-shrink-0 flex items-center justify-center w-9 h-9 md:w-10 md:h-10 rounded-full bg-amber-500"><FaMapMarkerAlt className="text-[#1e326f] text-base md:text-xl" /></span>
+              <span className="text-[#1e326f]/90 text-left">B-128, Transport Nagar, Sector-69, Noida, 201301</span>
             </div>
             <div className="flex items-center gap-2 md:gap-3 text-sm justify-center md:justify-start">
-              <span className="flex-shrink-0 flex items-center justify-center w-9 h-9 md:w-10 md:h-10 rounded-full bg-amber-500"><FaEnvelope className="text-white text-base md:text-xl" /></span>
-              <span className="text-white/90 text-left">info@anttravels.com</span>
+              <span className="flex-shrink-0 flex items-center justify-center w-9 h-9 md:w-10 md:h-10 rounded-full bg-amber-500"><FaEnvelope className="text-[#1e326f] text-base md:text-xl" /></span>
+              <span className="text-[#1e326f]/90 text-left">info@anttravels.com</span>
             </div>
             <div className="flex items-center gap-2 md:gap-3 text-sm justify-center md:justify-start">
-              <span className="flex-shrink-0 flex items-center justify-center w-9 h-9 md:w-10 md:h-10 rounded-full bg-amber-500"><FaPhone className="text-white text-base md:text-xl" /></span>
-              <span className="text-white/90 text-left">1800 1027 408</span>
+              <span className="flex-shrink-0 flex items-center justify-center w-9 h-9 md:w-10 md:h-10 rounded-full bg-amber-500"><FaPhone className="text-[#1e326f] text-base md:text-xl" /></span>
+              <span className="text-[#1e326f]/90 text-left">1800 1027 408</span>
             </div>
           </div>
         </div>
-        <div className="flex flex-col md:flex-row items-center justify-between max-w-7xl mx-auto px-4 py-3 bg-amber-500 text-white text-xs mt-2 rounded-t-lg space-y-2 md:space-y-0">
+        <div className="w-full flex flex-col md:flex-row items-center justify-between px-4 py-3 bg-gradient-to-br from-[#1e326f] to-[#16213e] text-white text-xs mt-0 space-y-2 md:space-y-0">
           <span className="text-center">&copy; {new Date().getFullYear()} ANT Travels. All Rights Reserved.</span>
           <div className="flex items-center gap-2 justify-center">
             <span>We Accept</span>

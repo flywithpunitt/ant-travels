@@ -11,6 +11,7 @@ import DoDham from './pages/DoDham';
 import Badrinath from './pages/Badrinath';
 import Kedarnath from './pages/Kedarnath';
 import Vehicles from './pages/Vehicles';
+import Dashboard from './pages/Dashboard';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/badrinath" element={<Badrinath />} />
           <Route path="/kedarnath" element={<Kedarnath />} />
           <Route path="/vehicles/:type" element={<Vehicles />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </Layout>
     </Router>
