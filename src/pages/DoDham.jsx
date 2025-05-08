@@ -26,7 +26,7 @@ const DoDham = () => {
         {/* Image Background with Overlay */}
         <div className="absolute inset-0">
           <img 
-            src="/chardham/chardham-banner.jpg" 
+            src="/chardham-banner.jpg" 
             alt="Do Dham Yatra"
             className="w-full h-full object-cover"
           />
@@ -397,7 +397,7 @@ const DoDham = () => {
             <div className="rounded-xl overflow-hidden shadow-lg">
               <div className="relative h-80">
                 <img 
-                  src="/public/badrinath.jpg" 
+                  src="/badrinath.jpg" 
                   alt="Kedarnath Temple" 
                   className="w-full h-full object-cover"
                 />
@@ -449,7 +449,7 @@ const DoDham = () => {
             <div className="rounded-xl overflow-hidden shadow-lg">
               <div className="relative h-80">
                 <img 
-                  src="/public/kedarnath.jpg" 
+                  src="/kedarnath.jpg" 
                   alt="Badrinath Temple" 
                   className="w-full h-full object-cover"
                 />
